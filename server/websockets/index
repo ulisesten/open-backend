@@ -1,0 +1,21 @@
+#! usr/bin/env node
+
+/** Websockets */
+function websockets(io){
+
+    io.on('connection', socket => {
+
+        console.log('io',socket.request.connection)
+        console.log('websockets', 'connected');
+
+        socket.on('message', function(data) {
+            
+            console.log('websockets', data);
+
+        });
+        
+    });
+
+}
+
+module.exports = websockets;

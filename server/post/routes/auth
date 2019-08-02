@@ -1,0 +1,157 @@
+#!/usr/bin/env node
+
+var db = require('../../../database/connect');
+var model= require('../../../database/models');
+var util = require('../../utils/responses');
+var parser = require('../../utils/parser');
+var enc = require('../../utils/encryption')
+var jwt = require('../../utils/jwt');
+
+var usersCollection = db.collection('usuarios');
+
+function onLogin(res, err, auth, data){
+    if(auth === true) {
+
+        /** AUTHORIZED */
+        console.log('mobileLogin usuario AUTHORIZED')
+        var token = jwt.createJsonWebToken(data);
+        util.jsonResponse(res, 200, { id: data.user_id, username: data.username, credentials: token});
+
+    } else {
+
+        /** NOT AUTHORIZED! */
+        console.log('[BAD!]mobileLogin usuario NOT authorized!',err)
+        util.jsonBadResponse(res, 403);
+
+    }
+
+
+}
+
+function onRegister(res, err, data){
+
+    if (err) {
+        /** Saving Error */
+        console.log('[ERROR!]mobileRegister Error al intentar guardar',err);
+        util.jsonBadResponse(res, 403);
+        
+    } else {
+        /** Saved successfuly */
+        console.log('mobileRegister El siguiente usuario se guard_o correctamente:', data.username);
+        var token = jwt.createJsonWebToken(data);
+        util.jsonResponse(res, 200, {id: data.user_id, username: data.username, credentials: token });
+
+    }
+
+}
+
+function mobileLogin(req, res, ops){
+    var body = '';
+
+    /** handle body */
+    req.on('data', data => {    body += data;    });
+
+
+        /** Function target */
+        req.on('end', () => {
+            
+            body = parser.parseJson(body);
+
+            console.log('mobileLogin',body);
+
+            if(body !== null){
+                /** Search for user */
+                usersCollection.findOne({ 'email': body.email},'-image -role -user_ip -contrib -timestamp', function(err, doc){
+
+                    if(!doc){
+
+                        /** Usuario NO existe */
+                        console.log('[BAD!]mobileLogin usuario NO existe',err)
+                        util.jsonBadResponse(res, 401);
+                            
+                    } else {
+
+                        /** Usuario existe */
+                        enc.loginDecryption(body.password, doc.password, (err, auth) => {
+
+                            onLogin(res, err, auth, doc)                            
+
+                        })
+                    }
+
+                })
+            } else {
+
+                /** Bad request */
+                util.jsonBadResponse(res, 400);
+
+            }
+
+        });
+
+}
+
+function mobileRegister(req, res, ops){
+    console.log('Post: mobileRegister');
+    var body = '';
+
+    /** handle body */
+    req.on('data', data => {    body += data;    });
+
+    /** Function target */
+    req.on('end', () => {
+        
+        
+        body = parser.parseJson(body);
+
+        /** Validating body */
+        if( body !== null ){
+
+            /** Checking availabilty of the info */
+            usersCollection.findOne({ 'email': body.email},'-imagen -role -ip -contrib -tiempo', function(err, doc){
+
+                if(!doc){
+
+                    /** The info is available to storage */
+                    enc.registerEncryption( body.password , (err, hash) => {
+
+                        console.log('mobileRegister:', 'info is available');
+                        var userInfo = util.createDatabaseUserInfoObject(req, body, hash);
+                        
+                        var userModel = new model.User(userInfo);
+                        
+                        userModel.save((err, data) => {
+                            
+                            /** Handle rest of the response */
+                            onRegister(res, err, data);
+                            
+                        });
+
+                    });
+
+                } else {
+
+                    /**The info is not available */
+                    console.log('[BAD!]mobileRegister:','Info not available. El usuario existe');
+                    util.jsonBadResponse(res, 401);
+
+                }
+
+            })
+
+
+        } else {
+
+            /**Bad request */
+            util.jsonBadResponse(res, 400);
+
+        }
+
+    });
+
+}
+
+module.exports = {
+    mobileLogin,
+    mobileRegister
+}

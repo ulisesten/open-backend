@@ -1,0 +1,43 @@
+{
+  "name": "platform",
+  "version": "0.0.1",
+  "description": "Node.js sample app",
+  "main": "server.js",
+  "gypfile": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "test": "IP=0.0.0.0 PORT=8080 mocha --timeout 5000 tests/*_test.js",
+    "build": "node-gyp rebuild",
+    "clean": "node-gyp clean"
+  },
+  "engine": {
+    "node": "10.16.0",
+    "npm": "6.9.0"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie": "^0.3.1",
+    "csrf-token": "^1.1.0",
+    "http-errors": "^1.7.1",
+    "jwt-simple": "^0.5.6",
+    "mongodb": "^2.1.16",
+    "mongoose": "^5.6.7",
+    "morgan": "^1.7.0",
+    "nanoid": "^2.0.0",
+    "node-addon-api": "^1.7.1",
+    "socket.io": "^2.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/ulisesten/neki-platform.git"
+  },
+  "author": "ulisesten <ulises.mtz.el@gmail.com>",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "http://github.com/ulisesten/neki-platform/issues"
+  },
+  "homepage": "http://github.com/ulisesten",
+  "devDependencies": {
+    "node-gyp": "^5.0.3"
+  }
+}

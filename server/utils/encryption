@@ -1,0 +1,38 @@
+#!/usr/bin/env node
+
+var bcrypt = require('bcryptjs');
+
+
+
+function loginDecryption(password,hash, callback){
+    bcrypt.compare(password, hash, (err, auth) => {
+
+        callback(err, auth);
+
+    });
+}
+
+
+
+function registerEncryption(password, callback){
+
+    bcrypt.genSalt(10, function(err, salt) {
+        if(!err){
+            
+            //encrypt passwords with salt
+            bcrypt.hash(password, salt, function(err, hash){
+                callback(err, hash);
+            });
+            
+        }
+    });
+
+        
+}
+
+
+
+module.exports = {
+    loginDecryption,
+    registerEncryption
+}

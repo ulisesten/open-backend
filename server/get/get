@@ -1,0 +1,26 @@
+#!/usr/bin/env node
+
+var route = require('./routes');
+var c_urlparser = require('../../build/Release/urlparser.node');
+
+
+function get(req, res, ops){
+
+
+    var url = c_urlparser.parse(req.url);
+
+    
+    if(url.path === '/'){
+
+        route.home(req, res);
+
+    } else {
+
+        //route.test(req,res);
+        res.writeHead(200);
+        res.end();
+    }
+    
+}
+
+module.exports = get;

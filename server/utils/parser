@@ -1,0 +1,15 @@
+#!/usr/bin/env node
+
+function parseJson(json){
+        try {
+            console.log('parseJson:','Parsing json');
+            return JSON.parse(json);
+        } catch(ex){
+            console.log('[BAD!]parseJson:','Bad request');
+            return null;
+        }
+    }
+
+module.exports = {
+    parseJson
+}

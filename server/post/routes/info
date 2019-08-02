@@ -1,0 +1,20 @@
+#!/usr/bin/env node
+
+var db = require('../../../database/connect');
+var model = require('../../../database/models')
+//var urlparser = require('./build/Release/parser.node')
+
+function getProducts(){
+    
+}
+
+function setProduct(req, res, opts){
+
+    var product = new module.Product()
+
+}
+
+module.exports = {
+    setProduct,
+    getProducts
+}

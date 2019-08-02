@@ -1,0 +1,20 @@
+#!/usr/bin/env node
+
+function home(req, res, ops){
+    console.log('You are in Home');
+    res.writeHead(200);
+    res.write('Hola nodejs');
+    res.end();
+    
+}
+
+function test(req, res, ops){
+    res.writeHead(200);
+    res.write(JSON.stringify({ id: '9dgfasdf79as79', info: 'getMethod'}));
+    res.end();
+}
+
+module.exports = {
+    home,
+    test
+}
