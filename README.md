@@ -1,2 +1,2 @@
-# open-backend
+# Open-backend
 Nodejs backend with c++ addons

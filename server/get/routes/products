@@ -1,0 +1,27 @@
+#!/usr/bin/env node
+
+var db = require('../../../database/connect');
+var model = require('../../../database/models')
+var createid = require('nanoid');
+
+function getProducts(){
+    
+}
+
+function setProduct(req, res, ops){
+
+    var product = new model.Product({
+        id: 'product-' + createid(),
+        productname: ops.name,
+        description: ops.description,
+        price: ops.price,
+        class: ops.class,
+        timestamp: Date()
+    });
+
+}
+
+module.exports = {
+    setProduct,
+    getProducts
+}
