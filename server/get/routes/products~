@@ -35,7 +35,7 @@ function setProduct(req, res, ops){
             productname: ops.name,
             description: ops.description,
             price: ops.price,
-            category: ops.category,
+            class: ops.class,
             imageurl: ops.imageurl,
             timestamp: Date()
         });

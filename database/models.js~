@@ -36,7 +36,7 @@ var Product = mongoose
                     productname: String,
                     description: String,
                     price: Number,
-                    category: String,
+                    class: String,
                     count: Number,
                     imageurl: String,
                     timestamp: Date,
