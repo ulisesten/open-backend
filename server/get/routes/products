@@ -6,7 +6,7 @@ var createid = require('nanoid');
 var utils = require('../../utils/responses');
 
 function getProducts(req, res, ops){
-    var products = db.collection('products');
+    //var products = db.collection('products');
 
     model.Product.find(null, '-_id -_v', (err, doc) =>{
         if(err) {

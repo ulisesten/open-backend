@@ -1,0 +1,23 @@
+#!/usr/bin/env node
+
+var model = require('../../../database/models');
+
+function getCategories(){
+    //var categories = db.collection('categories');
+
+    model.Category.find(null, '-_id -_v', (err, doc) =>{
+        if(err) {
+            console.log('[ERROR]categories/getCAtegories:', err);
+            utils.jsonBadResponse(res, 404);
+            return
+        }
+
+        utils.jsonResponse(res, 200, doc);
+
+    })
+}
+
+
+module.exports = {
+    getCategories
+}
