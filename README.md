@@ -15,7 +15,7 @@ Nodejs backend with c/c++ addons
         |     +--- get/
         |     |      +- routes
         |     |      |    +- products
-        |     |      |    `- routes /** to e renamed*/
+        |     |      |    `- routes /** to be renamed*/
         |     |      `- get
         |     +--- post/
         |     |      +- routes
