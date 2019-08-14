@@ -65,7 +65,6 @@ void checkForParameters(napi_env env, char str[], size_t size, napi_value* napi_
 
             else if (key == true)
             {
-
                 //copying object name into obj_name
                 *(&obj_name[namei]) = *str;
                 namei++;
@@ -82,7 +81,6 @@ void checkForParameters(napi_env env, char str[], size_t size, napi_value* napi_
             
         } 
 
-    //obj_name[namei] = '\0';
     obj_value[valuei] = '\0';
 
     napi_create_string_utf8(env, (char*) &obj_value, valuei, &nvalue);
@@ -90,8 +88,6 @@ void checkForParameters(napi_env env, char str[], size_t size, napi_value* napi_
 
     napi_create_string_utf8(env, (char*) &path, pathi, &nvalue);
     napi_set_named_property(env, *napi_object, "path", nvalue);
-    //printf("path: %s\n", path);
-    //printf("************\n");
 
 }
 
@@ -101,7 +97,6 @@ napi_value parse(napi_env env, napi_callback_info info){
     napi_value myobject;
     
     size_t argc = 1;
-    //char* str = NULL;
 
     napi_get_cb_info(env, info, &argc, argv, NULL, NULL);
     if (argc < 1) {
@@ -109,7 +104,6 @@ napi_value parse(napi_env env, napi_callback_info info){
         return NULL;
     }
 
-    //size_t cpy_len;
 
     napi_get_value_string_utf8(env, argv[0], NULL, 0, &argc);
     
@@ -120,8 +114,8 @@ napi_value parse(napi_env env, napi_callback_info info){
           env          //environment
         , argv[0]      //napi_value representa un string en javascript
         , (char*) &str //(c/c++)Buffer para recibir el string utf8
-        , sizeof(str)      //Tamaño del buffer destino
-        , &argc     // numero de bytes copiados al buffer destino
+        , sizeof(str)  //Tamaño del buffer destino
+        , &argc        // numero de bytes copiados al buffer destino
     );
 
     

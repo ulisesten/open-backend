@@ -4,6 +4,9 @@ var get = require('../server/get/get');
 var post = require('../server/post/post');
 
 function app(req,res){
+
+    req.url = req.url.replace(/^(\.\.[\/\\])+/, '');
+
     if(req.method === 'GET')
 
         get(req, res);

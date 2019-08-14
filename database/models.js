@@ -37,7 +37,10 @@ var Product = mongoose
                     description: String,
                     price: Number,
                     class: String,
-                    timestamp: Date
+                    count: Number,
+                    imageurl: String,
+                    timestamp: Date,
+                    updated: Date
                 },{ collection: 'products' }))
 
 

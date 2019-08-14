@@ -3,7 +3,7 @@
         {
            "target_name": "urlparser",
            "sources": [
-               "server/utils/c++/urlparser.cc"
+               "server/utils/addons/urlparser.cc"
             ]
         }
     ]

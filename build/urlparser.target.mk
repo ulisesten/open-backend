@@ -82,7 +82,7 @@ INCS_Release := \
 	-I/home/ulises/.cache/node-gyp/10.16.0/deps/v8/include
 
 OBJS := \
-	$(obj).target/$(TARGET)/server/utils/c++/urlparser.o
+	$(obj).target/$(TARGET)/server/utils/addons/urlparser.o
 
 # Add to the list of files we specially track dependencies for.
 all_deps += $(OBJS)

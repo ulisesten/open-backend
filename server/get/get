@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 var route = require('./routes/routes');
+var products = require('./routes/products');
 var c_urlparser = require('../../build/Release/urlparser.node');
 
 
@@ -14,11 +15,31 @@ function get(req, res, ops){
 
         route.home(req, res);
 
-    } else {
+    }
+    
+    else if(url.path === '/getProducts') {
 
-        //route.test(req,res);
-        res.writeHead(200);
+        products.getProducts(req, res, url);
+
+    }
+
+    else if(url.path === '/setProduct') {
+
+        products.setProduct(req, res, url);
+
+    }
+
+    else if(url.path === '/updateProduct') {
+
+        products.updateProduct(req, res, url);
+
+    }
+
+    else {
+
+        //res.writeHead(200);
         res.end();
+
     }
     
 }
