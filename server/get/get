@@ -2,6 +2,7 @@
 
 var route = require('./routes/routes');
 var products = require('./routes/products');
+var categories = require('./routes/categories');
 var c_urlparser = require('../../build/Release/urlparser.node');
 
 
@@ -33,6 +34,15 @@ function get(req, res, ops){
 
         products.updateProduct(req, res, url);
 
+    }
+
+    else if(url.path === '/getCategories') {
+
+        categories.getCategories(req, res, url);
+    }
+
+    else if(url.path === '/setCategory') {
+        categories.setCategory(req, res, url);
     }
 
     else {

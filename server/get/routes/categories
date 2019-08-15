@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 
 var model = require('../../../database/models');
+var utils = require('../../utils/responses');
+var createid = require('nanoid');
 
-function getCategories(){
+function getCategories(req, res, ops){
     //var categories = db.collection('categories');
 
     model.Category.find(null, '-_id -_v', (err, doc) =>{
@@ -17,7 +19,40 @@ function getCategories(){
     })
 }
 
+function setCategory(req, res, ops){
+
+    //validating parameters
+    if( ops.name
+        && ops.imageurl ) {
+
+        var category = new model.Category({
+            id: 'category-' + createid(),
+            category: ops.name,
+            description: ops.description,
+            imageurl: ops.imageurl,
+            timestamp: Date()
+        });
+
+        category.save((err, doc) => {
+            if (err) {
+                console.log('[ERROR]categories/setCategory: Error al intentar guardar',error);
+                utils.jsonBadResponse(res, 507);
+            } else {
+                console.log('categories/setCategory: El elemento se guardo_ correctamente', doc.id);
+                utils.jsonResponse(res, 200, { categoryid: doc.id });
+            }
+        });
+        
+    } else {
+
+        console.log('[BAD]products/setProduct: Bad request');
+        utils.jsonBadResponse(res, 400);
+
+    }
+}
+
 
 module.exports = {
-    getCategories
+    getCategories,
+    setCategory
 }

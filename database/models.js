@@ -43,6 +43,16 @@ var Product = mongoose
                     updated: Date
                 },{ collection: 'products' }))
 
+var Category = mongoose
+                .model('category',new Schema({
+                    id: String,
+                    category: String,
+                    description: String,
+                    imageurl: String,
+                    timestamp: Date,
+                    updated: Date
+                },{ collection: 'categories' }))
+
 
 var Friend = mongoose
                 .model('friends', new Schema({
@@ -52,9 +62,11 @@ var Friend = mongoose
                     friend: String
                 },{collection: 'amigos'}))
 
+
 module.exports = {
     User,
     Product,
+    Category,
     Pub,
     Friend
 }
