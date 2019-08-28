@@ -1,0 +1,94 @@
+#!/usr/bin/env node
+
+var parser = require('../../utils/parser');
+var model = require('../../../database/models');
+var createid = require('nanoid');
+var utils = require('../../utils/responses');
+
+/**ulisesten. agosto 27 2019 */
+
+function setProduct(req, res, ops){
+    var body = '';
+
+    /** handle body */
+    req.on('data', data => {    body += data;    });
+
+    req.on('end', () => {
+            
+        body = parser.parseJson(body);
+
+        //console.log(body.id);
+
+        //validating parameters
+        if(    body.name
+            && body.description
+            && body.price ) {
+
+            var product = new model.Product({
+                id:          'product-' + createid(),
+                productname: body.productname,
+                description: body.description,
+                price:       body.price,
+                category:    body.category,
+                imageurl:    body.imageurl,
+                timestamp:   Date()
+            });
+
+            product.save((err, doc) => {
+                if (err) {
+                    console.log('[ERROR]products/setProduct: Error al intentar guardar',error);
+                    utils.jsonBadResponse(res, 507);
+                } else {
+                    console.log('products/setProduct: El elemento se guardo_ correctamente', doc.id);
+                    utils.jsonResponse(res, 200, { productid: doc.id });
+                }
+            });
+            
+        } else {
+
+            console.log('[BAD]products/setProduct: Bad request');
+            utils.jsonBadResponse(res, 400);
+
+        }
+
+    });
+
+}
+
+function updateProduct(req, res, ops){
+
+    var body = '';
+
+    req.on('data', data => {    body += data;    });
+
+    req.on('end', () => {
+            
+        body = parser.parseJson(body);
+
+        body.updated = new Date();
+
+        model.Product.findOneAndUpdate({id: body.id}
+            , body 
+            ,{ useFindAndModify: false }, (err, doc, result) => {
+        
+            if (err) {
+
+                console.log('[ERROR]products/updateProduct: Error al intentar actualizar',error);
+                utils.jsonBadResponse(res, 507);
+
+            } else {
+
+                console.log('products/updateProduct: El elemento se actualizo_ correctamente', doc.id);
+                utils.jsonResponse(res, 200, { productid: doc.id });
+                
+            }
+
+        })
+
+    })
+}
+
+module.exports = {
+    setProduct
+   ,updateProduct
+}

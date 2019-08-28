@@ -2,17 +2,24 @@
 
 var auth = require('./routes/auth');
 var info = require('./routes/info')
+var products = require('./routes/products');
 
 function post(req, res, ops){
     
     if ( req.url === '/mobileLogin' )
-        auth.mobileLogin(req, res, ops);
+        auth.mobileLogin( req, res, ops );
 
     else
     if( req.url === '/mobileRegister' )
-        auth.mobileRegister(req, res, ops);
+        auth.mobileRegister( req, res, ops );
 
+    else
+    if ( req.url === '/setProduct' )
+        products.setProduct( req, res, ops );
 
+    else
+    if ( req.url === '/updateProduct' )
+        products.updateProduct( req, res, ops );
 
     else
         res.end();

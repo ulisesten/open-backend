@@ -23,8 +23,6 @@ function getProducts(req, res, ops){
 
 function setProduct(req, res, ops){
 
-    console.log(ops.id);
-
     //validating parameters
     if( ops.name
         && ops.description

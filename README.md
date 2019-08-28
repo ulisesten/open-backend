@@ -39,7 +39,24 @@ Nodejs backend with c/c++ addons
 
 
 
- ## How to use
+ ## Usage
+
+ ### Set a product
+
+     POST
+
+     url: /setProduct
+
+     body:
+
+### Update a product
+
+    POST
+
+    url: /pudateProduct
+
+    body:
+        
 
  ## Developers
     Ulisesten
