@@ -3,11 +3,12 @@
 /**     Utils     */
 
 var nanoid = require('nanoid');
+var cookie = require('cookie');
 
 
 function jsonResponse(res, status, jsondata){
     console.log('jsonResponse:','status ' + status);
-    res.writeHead(status);
+    res.writeHead(status, {'Set-Cookie': genCookie(jsondata.credentials),'Content-Type': 'application/json; charset=utf-8'});
     res.write(JSON.stringify(jsondata));
     res.end();
 }
@@ -44,6 +45,22 @@ function createDatabaseUserInfoObject(req, body, hash){
 
 function handleCredentials(client, server){
 
+}
+
+function genCookie(toCookie){
+    return cookie.serialize('token', String(toCookie), {
+        httpOnly: true,
+        maxAge: 60 * 60 * 24 * 7, // 1 week
+        path: '/'
+    })
+}
+
+function clearCookie(){
+    return cookie.serialize('token', String(''), {
+        httpOnly: true,
+        expires: new Date(1), // 1 week
+        path: '/'
+    })
 }
 
 

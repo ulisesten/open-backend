@@ -8,41 +8,47 @@ var c_urlparser = require('../../build/Release/urlparser.node');
 
 function get(req, res, ops){
 
+    var use = false;
 
     var url = c_urlparser.parse(req.url);
 
     
-    if(url.path === '/'){
+    /*if(url.path === '/'){
 
         route.home(req, res);
 
     }
     
-    else if(url.path === '/getProducts') {
+    else*/ if(url.path === '/getProducts') {
 
         products.getProducts(req, res, url);
+        use = true;
 
     }
 
     else if(url.path === '/setProduct') {
 
         products.setProduct(req, res, url);
+        use = true;
 
     }
 
     else if(url.path === '/updateProduct') {
 
         products.updateProduct(req, res, url);
+        use = true;
 
     }
 
     else if(url.path === '/getCategories') {
 
         categories.getCategories(req, res, url);
+        use = true;
     }
 
     else if(url.path === '/setCategory') {
         categories.setCategory(req, res, url);
+        use = true;
     }
 
     else {
@@ -51,6 +57,8 @@ function get(req, res, ops){
         res.end();
 
     }
+
+    return use;
     
 }
 

@@ -57,7 +57,7 @@ function mobileLogin(req, res, ops){
             
             body = parser.parseJson(body);
 
-            console.log('mobileLogin',body);
+            //console.log('mobileLogin',body);
 
             if(body !== null){
                 /** Search for user */

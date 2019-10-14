@@ -2,22 +2,29 @@
 
 var get = require('../server/get/get');
 var post = require('../server/post/post');
+var static = require('../server/static/static');
 
-function app(req,res){
+function app( req, res){
+
+    var mUse = false;
 
     req.url = req.url.replace(/^(\.\.[\/\\])+/, '');
 
-    if(req.method === 'GET')
+    if(req.method === 'GET'){
+        
+        /**@mUse returns true if static() catch the request */
+        mUse = static( req, res );
+        if( !mUse )
+            get( req, res);
 
-        get(req, res);
+    } else if (req.method === 'POST')
 
-    else if (req.method === 'POST')
-
-        post(req,res);
+        post( req, res );
 
     else
 
         res.end();
+        
 }
 
 module.exports = app;

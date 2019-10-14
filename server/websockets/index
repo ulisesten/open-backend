@@ -5,12 +5,14 @@ function websockets(io){
 
     io.on('connection', socket => {
 
-        console.log('io',socket.request.connection)
+        //console.log('io',socket.request.connection)
         console.log('websockets', 'connected');
+        io.emit('message', { type: 'server', message: 'Mensaje automático del servidor'});
 
         socket.on('message', function(data) {
             
             console.log('websockets', data);
+            io.emit('message', data);
 
         });
         

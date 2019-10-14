@@ -1,0 +1,68 @@
+#!/usr/bin/env node
+
+var load = require('./load');
+var cookie = require('cookie');
+var jwt = require('../utils/jwt');
+
+function static( req, res ){
+    var use = false;
+    
+    if( req.url === '/' ) {
+
+        var parsedCookie = cookie.parse(String(req.headers.cookie));
+        
+        if( parsedCookie.token !== undefined)
+            var decodedToken = jwt.decodeToken(parsedCookie.token)
+        if( decodedToken )
+            load.loadHTML( './view/html/home.html', req, res );
+        else{
+            res.writeHead(302, {'Location': '/ingresar'});
+            res.end();
+        } 
+        //res.end();
+        use = true;
+
+    } else if( req.url === '/ingresar'){
+
+        load.loadHTML( './view/html/login.html', req, res );
+        use = true;
+
+    } else if( req.url === '/registro'){
+
+        load.loadHTML( './view/html/signup.html', req, res );
+        use = true;
+
+    }
+    /**@Scripts */
+    else if( req.url === '/js/home.js') {
+
+        load.loadJS( './view/js/home.js', req, res );
+        use = true;
+
+    } else if( req.url === '/js/ws.js') {
+
+        load.loadJS( './view/js/socket.io.js', req, res );
+        use = true;
+    } else if( req.url === '/js/auth.js') {
+
+        load.loadJS( './view/js/auth.js', req, res );
+        use = true;
+    }
+
+    /**@Styles */
+    else if( req.url === '/css/home.css' ) {
+
+        load.loadCSS( './view/css/home.css', req, res );
+        use = true;
+
+    } else {
+
+        res.end();
+
+    }
+
+    return use;
+
+}
+
+module.exports = static;

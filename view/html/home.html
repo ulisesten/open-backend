@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Principal</title>
+<meta charset="utf-8">
+<meta name="keywords" content="chat, social, amigos">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0;">
+<meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1.0">
+
+
+<link rel="stylesheet", href="css/home.css"></link>
+<link rel='icon' href='https://res.cloudinary.com/djlzeapiz/image/upload/v1544741360/favicon.ico'></link>
+</head>
+<body>
+    <header class="header">
+        <div class="header-container logo-nav-container">
+            <h1 class="logo"> API </h1>
+            <nav class="navigation">
+                <ul>
+                    <li><span class="clickable">Mi actividad</span></li>
+                    <li><span class="clickable">Mi cuenta</span></li>
+                    <li><span id="salir" class="clickable">Salir</span></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-w main-p">
+        <div class="chatbox border">
+
+            <ul id="messages"></ul>
+
+            <input id="message-input" type="text" class="border" placeholder="type message"></input>
+            <button id="message-button" class="border">Send</button>
+        </div>
+        
+    </main>
+
+    <section class="r-section r-section-p r-section-w">
+      
+    </section>
+
+    <script src="js/ws.js"></script>
+    <script src="js/home.js"></script>
+    
+</body>
+</html>
