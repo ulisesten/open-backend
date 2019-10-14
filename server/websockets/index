@@ -7,7 +7,7 @@ function websockets(io){
 
         //console.log('io',socket.request.connection)
         console.log('websockets', 'connected');
-        io.emit('message', { username: 'Server',type: 'server', message: 'Mensaje automático del servidor', timestamp: Date()});
+        socket.emit('message', { username: 'Server',type: 'server', message: 'Mensaje automático del servidor', timestamp: Date()});
 
         socket.on('message', function(data) {
             

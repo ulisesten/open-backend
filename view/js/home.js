@@ -28,6 +28,7 @@ var messages = el('messages');
 
 sendMessage.addEventListener('click', () => {
     var messageContent = el('message-input').value;
+    el('message-input').value = '';
 
     //messages.append(newSenderMessage(messageContent));
     var messageObject = {
