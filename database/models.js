@@ -6,11 +6,12 @@ var Schema = mongoose.Schema;
 
 var User = mongoose
                 .model('users',new Schema({
-                    user_id: String,
+                    id: String,
                     email: String,
                     username: String,
                     password: String,
-                    image: String,
+                    profile_picture: String,
+                    profile_cover: String,
                     role: Number,
                     user_ip: Array,
                     contrib: Boolean,
