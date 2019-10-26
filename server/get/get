@@ -26,7 +26,7 @@ function get(req, res, ops){
 
     }
 
-    else if(url.path === '/setProduct') {
+    /*else if(url.path === '/setProduct') {
 
         products.setProduct(req, res, url);
         use = true;
@@ -38,7 +38,7 @@ function get(req, res, ops){
         products.updateProduct(req, res, url);
         use = true;
 
-    }
+    }*/
 
     else if(url.path === '/getCategories') {
 

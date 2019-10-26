@@ -55,11 +55,11 @@ function static( req, res ){
         load.loadCSS( './view/css/home.css', req, res );
         use = true;
 
-    } else {
+    }/* else {
 
         res.end();
 
-    }
+    }*/
 
     return use;
 
