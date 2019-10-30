@@ -24,19 +24,14 @@ function setProduct(req, res, ops){
             && body.description
             && body.price ) {
 
-            var product = new model.Product({
-                id:          'product-' + createid(),
-                productname: body.productname,
-                description: body.description,
-                price:       body.price,
-                category:    body.category,
-                imageurl:    body.imageurl,
-                timestamp:   Date()
-            });
+                body.id = 'product-' + createid();
+                body.timestamp = new Date()
+
+            var product = new model.Product(body);
 
             product.save((err, doc) => {
                 if (err) {
-                    console.log('[ERROR]products/setProduct: Error al intentar guardar',error);
+                    console.log('[ERROR]products/setProduct: Error al intentar guardar',err);
                     utils.jsonBadResponse(res, 507);
                 } else {
                     console.log('products/setProduct: El elemento se guardo_ correctamente', doc.id);
@@ -73,7 +68,7 @@ function updateProduct(req, res, ops){
         
             if (err) {
 
-                console.log('[ERROR]products/updateProduct: Error al intentar actualizar',error);
+                console.log('[ERROR]products/updateProduct: Error al intentar actualizar',err);
                 utils.jsonBadResponse(res, 507);
 
             } else {
