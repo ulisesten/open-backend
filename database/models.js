@@ -42,7 +42,7 @@ var Product = mongoose
                     category: String,
                     count: Number,
                     main_image_url: String,
-                    image_array
+                    image_array: String,
                     timestamp: Date,
                     updated: Date
                 },{ collection: 'products' }))
