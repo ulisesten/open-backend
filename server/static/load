@@ -1,0 +1,99 @@
+#!/usr/bin/env node
+
+var fs = require('fs');
+
+
+/**Load a script if this update, response 304 if no changes made */
+function loadJS( path, req, res ){
+
+    fs.stat( path , ( err, stats ) => {
+
+        var modified = Date.parse(stats.mtime);
+        var clienttime = Date.parse(req.headers['if-modified-since']);
+        //console.log('modified', modified);
+        //console.log( 'clienttime' , clienttime );
+
+        if( modified > clienttime || !clienttime ){
+
+            //console.log('script modified');
+            var newheaders = { 'Content-Type': 'text/javascript; ', 'Last-Modified': stats.mtime + ';', 'cache-control': 'max-age=0, private, must-revalidate;' };
+
+            fs.readFile(path, function(err, data){
+                if(!err){
+                    res.writeHead(200, newheaders)
+                    res.write(data)
+                } else {
+                    console.log(err)
+                    res.writeHead(404)
+                }
+                res.end()
+            })
+
+        } else {
+            //console.log('script NOT modified');
+            var headers = { 'Content-Type': 'text/javascript; charset=utf-8;' };
+            res.writeHead(304, headers)
+            res.end();
+        }
+
+    })
+}
+
+function loadCSS( path, req, res ){
+
+    fs.stat( path , ( err, stats ) => {
+
+        var modified = Date.parse(stats.mtime);
+        var clienttime = Date.parse(req.headers['if-modified-since']);
+        //console.log('modified', modified);
+        //console.log( 'clienttime' , clienttime );
+
+
+        if( modified > clienttime || !clienttime ){
+
+            //console.log('style modified');
+            var newheaders = { 'Content-Type': 'text/css; ', 'Last-Modified': stats.mtime + ';', 'cache-control': 'max-age=0, private, must-revalidate;' };
+
+            fs.readFile(path, function(err, data){
+                if(!err){
+                    res.writeHead(200, newheaders)
+                    res.write(data)
+                } else {
+                    console.log(err)
+                    res.writeHead(404)
+                }
+                res.end()
+            })
+
+        } else {
+            //console.log('style NOT modified');
+            var headers = { 'Content-Type': 'text/css; charset=utf-8;' };
+            res.writeHead(304, headers)
+            res.end();
+        }
+
+    })
+}
+
+function loadHTML(path, req, res){
+
+    var headers = {'Content-Type': 'text/html; charset=utf-8'}
+     
+    fs.readFile(path, function(err, data){
+        if(!err){
+           res.writeHead(200, headers)
+           res.write(data)
+        } else {
+            console.log(err)
+            res.writeHead(404)
+        }
+        res.end()
+    })
+
+}
+
+module.exports = {
+    loadJS,
+    loadCSS,
+    loadHTML
+}

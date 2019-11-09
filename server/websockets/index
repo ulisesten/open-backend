@@ -5,12 +5,15 @@ function websockets(io){
 
     io.on('connection', socket => {
 
-        console.log('io',socket.request.connection)
+        //console.log('io',socket.request.connection)
         console.log('websockets', 'connected');
+        socket.emit('message', { username: 'Server',type: 'server', message: 'Mensaje automático del servidor', timestamp: Date()});
 
         socket.on('message', function(data) {
             
             console.log('websockets', data);
+            data.timestamp = new Date();
+            io.emit('message', data);
 
         });
         

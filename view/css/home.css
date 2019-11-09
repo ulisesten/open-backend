@@ -1,0 +1,243 @@
+*{padding: 0; margin: 0; border: 0; vertical-align: baseline; box-sizing: border-box; }
+
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
+}
+
+a {
+    text-decoration: none;
+}
+
+/**HEADER*/
+.header {
+
+  position: fixed;
+  width: 100%;
+  padding: 0.5rem;
+  z-index: 100;
+
+}
+
+.header-container {
+    width: 85%;
+    margin: 0 auto;
+}
+
+.logo-nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    letter-spacing: 2px;
+    font-size: 2em;
+}
+
+.navigation ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+    .navigation ul li {
+        display: inline-block;
+    }
+
+        .navigation ul li span,a {
+            display: block;
+            padding: 0.5rem 1rem;
+            transition: all 0.4s linear;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+            .navigation ul li span:hover,a:hover {
+                background-color: black;
+                color: white;
+            }
+
+/**Main Stuff */
+.main-w {
+    width: 65%;
+    padding-top: 50px; 
+}
+
+
+
+.welcome {
+    text-align: center;
+    margin: 20px;
+    padding: 100px 20px 20px 20px;
+    font-size: 3em;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+/**Main Image*/
+
+/**Messages area*/
+.chatbox {
+    position: fixed;
+    height: 90%;
+    bottom: 0px;
+}
+
+.border {
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    border-radius: 3px;
+}
+
+#message-input {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 84%;
+    padding: 10px;
+    margin: 3px;
+}
+
+#message-button {
+    position: absolute;
+    background-color: #131410;
+    color: aliceblue;
+    bottom: 0px;
+    right: 0px;
+    width: 14%;
+    padding: 10px 5px;
+    margin: 3px;
+}
+
+#messages-container {
+    width: 100%;
+    
+}
+
+#messages {
+    position: absolute;
+    padding: 5px;
+    width: 100%;
+    height: 93%;
+    overflow-y: auto;
+}
+
+.senderMessage {
+    background-color: #00acc1;
+    color: white;
+    border-radius: 8px;
+    padding: 8px;
+    margin: 3px;
+    display: table;
+    box-sizing: border-box;
+    text-align: right;
+    margin-right: 0px;
+    margin-left: auto;
+}
+
+.incomingMessage {
+    background-color: #305ef7;
+    color: white;
+    border-radius: 8px;
+    padding: 8px;
+    margin: 3px;
+    display: table;
+    margin-right: auto;
+    margin-left: 30px;
+}
+
+.profileImage {
+    width: 30px;
+    border-radius: 50%;
+}
+
+.timestamp {
+    color: #686767;
+    font-size: 10px;
+    margin-left: 30px;
+    margin-right: auto;
+}
+
+.timestamp-right {
+    display: table;
+    color: #686767;
+    font-size: 10px;
+    margin-left: auto;
+    margin-right: 0px;
+}
+
+.username {
+    margin: 10px;
+}
+
+
+
+/**Utils*/
+
+.field {
+    padding: 5px;
+    margin: 5px;
+}
+
+.formulary {
+    padding: 20px;
+    text-align: center;
+}
+
+.blue {
+    color: white;
+    background-color: #3c6cd3;
+}
+
+/************* GRID **************/
+/*corto*/
+@media only screen and (min-width: 368px) {
+    .pos {
+        width: 100%;
+    }
+
+    .main-p {
+        position: absolute;
+        bottom: 0px;
+        left: 0%;
+        height: 100%;
+    }
+}
+/*Mediano*/
+@media only screen and (min-width: 568px) {
+    .pos {
+        width: 100%;
+    }
+
+    .main-p {
+        position: absolute;
+        bottom: 0px;
+        left: 0%;
+        height: 100%;
+    }
+}
+/*Largo*/
+@media only screen and (min-width: 768px) {
+    .pos {
+        width: 75%;
+    }
+
+    .main-p {
+        position: absolute;
+        bottom: 0px;
+        left: 10%;
+        height: 100%;
+    }
+}
+/*Extra largo*/
+@media only screen and (min-width: 968px) {
+    .pos {
+        width:65%;
+    }
+
+    .main-p {
+        position: absolute;
+        bottom: 0px;
+        left: 15%;
+        height: 100%;
+    }
+}

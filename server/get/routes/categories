@@ -12,9 +12,11 @@ function getCategories(req, res, ops){
             console.log('[ERROR]categories/getCAtegories:', err);
             utils.jsonBadResponse(res, 404);
             return
-        }
+        } else {
 
-        utils.jsonResponse(res, 200, doc);
+            utils.jsonResponse(res, 200, doc);
+            
+        }
 
     })
 }
