@@ -36,22 +36,12 @@ var Product = mongoose
                     seller_id: String,
                     seller_name: String,
                     id: String,
-<<<<<<< HEAD
                     product_name: String,
-=======
-                    seller_id: String,
-                    seller_name: String,
-                    productname: String,
->>>>>>> 1ff94220395507e75f307a3b081d0a6ef0d18680
                     description: String,
                     price: Number,
                     category: String,
                     count: Number,
-<<<<<<< HEAD
-=======
-                    main_image_url: String,
->>>>>>> 1ff94220395507e75f307a3b081d0a6ef0d18680
-                    image_array: String,
+                    image_array: Array,
                     timestamp: Date,
                     updated: Date
                 },{ collection: 'products' }))
