@@ -1,0 +1,31 @@
+#!/usr/bin/env node
+
+var db = require('../../../database/connect');
+var model = require('../../../database/models');
+
+function searchContact(req, res, ops){
+    console.log('searchProduct', ops);
+
+    var regex = new RegExp(ops.contact_name,'gi')
+    model.User.find({ username: regex }, '-_id -__v', (err, doc) => {
+
+        console.log('searchContact:',doc);
+
+        if( err || doc == null){
+
+            console.log('[ERROR]products/searchContact: Error', err );
+            utils.jsonBadResponse(res, 404);
+
+        } else {
+
+            console.log('products/searchContact: El elemento fue encontrado', doc);
+            utils.jsonResponse(res, 200, doc );
+
+        }
+
+    })
+}
+
+module.exports = {
+    searchContact
+}

@@ -3,6 +3,7 @@
 var route = require('./routes/routes');
 var products = require('./routes/products');
 var categories = require('./routes/categories');
+var contacts = require('./routes/contacts');
 var c_urlparser = require('../../build/Release/urlparser.node');
 
 
@@ -43,6 +44,12 @@ function get(req, res, ops){
 
     else if(url.path === '/setCategory') {
         categories.setCategory(req, res, url);
+    }
+
+
+    /**@Contacts */
+    else if(url.path === 'searchContact') {
+        contacts.searchContact(req, res, url);
     }
 
     else {
