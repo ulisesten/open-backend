@@ -3,6 +3,7 @@
 var route = require('./routes/routes');
 var products = require('./routes/products');
 var categories = require('./routes/categories');
+var contacts = require('./routes/contacts');
 var c_urlparser = require('../../build/Release/urlparser.node');
 
 
@@ -26,14 +27,14 @@ function get(req, res, ops){
 
     }
 
-    /*else if(url.path === '/setProduct') {
+    else if(url.path === '/getProductDetails') {
 
-        products.setProduct(req, res, url);
+        products.getProductDetails(req, res, url);
         use = true;
 
     }
 
-    else if(url.path === '/updateProduct') {
+    /*else if(url.path === '/updateProduct') {
 
         products.updateProduct(req, res, url);
         use = true;
@@ -49,6 +50,12 @@ function get(req, res, ops){
     else if(url.path === '/setCategory') {
         categories.setCategory(req, res, url);
         use = true;
+    }
+
+
+    /**@Contacts */
+    else if(url.path === 'searchContact') {
+        contacts.searchContact(req, res, url);
     }
 
     else {

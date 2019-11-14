@@ -21,6 +21,31 @@ function getProducts(req, res, ops){
     
 }
 
+function getProductDetails(req, res, ops){
+    //var products = db.collection('products');
+
+    console.log('getOneProduct:', ops);
+
+    model.Product.findOne({ id: ops.id }, '-_id -__v', (err, doc) => {
+
+        console.log('getOneProduct:',doc);
+
+        if( err || doc == null){
+
+            console.log('[ERROR]products/getOneProduct: Error', err );
+            utils.jsonBadResponse(res, 404);
+
+        } else {
+
+            console.log('products/getOneProduct: El elemento fue encontrado', doc);
+            utils.jsonResponse(res, 200, doc );
+
+        }
+
+    })
+    
+}
+
 function setProduct(req, res, ops){
 
     //validating parameters
@@ -85,7 +110,8 @@ function updateProduct(req, res, ops){
 }
 
 module.exports = {
-    getProducts,
-    setProduct,
-    updateProduct
+     getProducts
+    ,setProduct
+    ,updateProduct
+    ,getProductDetails
 }

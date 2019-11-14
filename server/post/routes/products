@@ -17,15 +17,16 @@ function setProduct(req, res, ops){
             
         body = parser.parseJson(body);
 
-        //console.log(body.id);
+        console.log('Testing set product...');
+        console.log('body:',body);
 
         //validating parameters
-        if(    body.name
+        if(    body.product_name
             && body.description
             && body.price ) {
 
                 body.id = 'product-' + createid();
-                body.timestamp = new Date()
+                body.timestamp = new Date();
 
             var product = new model.Product(body);
 

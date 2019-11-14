@@ -33,16 +33,15 @@ var Pub = mongoose
 
 var Product = mongoose
                 .model('product',new Schema({
-                    id: String,
                     seller_id: String,
                     seller_name: String,
-                    productname: String,
+                    id: String,
+                    product_name: String,
                     description: String,
                     price: Number,
                     category: String,
                     count: Number,
-                    main_image_url: String,
-                    image_array: String,
+                    image_array: Array,
                     timestamp: Date,
                     updated: Date
                 },{ collection: 'products' }))
