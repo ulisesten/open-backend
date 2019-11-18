@@ -48,6 +48,8 @@ function getProductDetails(req, res, ops){
 
 function getProductsByCategory(req, res, ops){
 
+    console.log('ops',ops)
+
     model.Product.find({ 'category': ops.category }, '-_id -_v', (err, doc) =>{
         if(err) {
             console.log('[ERROR]products/getProductsByCategory:', err);
@@ -55,6 +57,7 @@ function getProductsByCategory(req, res, ops){
             return
         }
 
+        console.log('doc',doc)
         utils.jsonResponse(res, 200, doc);
 
     })
