@@ -34,21 +34,8 @@ function get(req, res, ops){
 
     }
 
-    /*else if(url.path === '/updateProduct') {
-
-        products.updateProduct(req, res, url);
-        use = true;
-
-    }*/
-
-    else if(url.path === '/getCategories') {
-
-        categories.getCategories(req, res, url);
-        use = true;
-    }
-
-    else if(url.path === '/setCategory') {
-        categories.setCategory(req, res, url);
+    else if(url.path === '/getProductsByCategory') {
+        products.getProductsByCategory(req, res, url);
         use = true;
     }
 

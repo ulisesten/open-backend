@@ -46,7 +46,21 @@ function getProductDetails(req, res, ops){
     
 }
 
-function setProduct(req, res, ops){
+function getProductsByCategory(req, res, ops){
+
+    model.Product.find({ 'category': ops.category }, '-_id -_v', (err, doc) =>{
+        if(err) {
+            console.log('[ERROR]products/getProductsByCategory:', err);
+            utils.jsonBadResponse(res, 404);
+            return
+        }
+
+        utils.jsonResponse(res, 200, doc);
+
+    })
+}
+
+/*function setProduct(req, res, ops){
 
     //validating parameters
     if( ops.name
@@ -107,11 +121,12 @@ function updateProduct(req, res, ops){
         }
 
     })
-}
+}*/
 
 module.exports = {
      getProducts
-    ,setProduct
-    ,updateProduct
     ,getProductDetails
+    ,getProductsByCategory
+    //,setProduct
+    //,updateProduct
 }
