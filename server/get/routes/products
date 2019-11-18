@@ -51,7 +51,7 @@ function getProductsByCategory(req, res, ops){
     console.log('ops',ops)
 
     model.Product.find({ category: ops.category }, '-_id -_v', (err, doc) =>{
-        if(err) {
+        if(err || doc === null) {
             console.log('[ERROR]products/getProductsByCategory:', err);
             utils.jsonBadResponse(res, 404);
             return
