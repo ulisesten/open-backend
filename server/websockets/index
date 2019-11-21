@@ -5,8 +5,8 @@ function websockets(io){
 
     io.on('connection', socket => {
 
-        //console.log('io',socket.request.connection)
         var id = socket.handshake.query.id;
+        console.log('user_id', id)
         
         socket.join(id);
         
