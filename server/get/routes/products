@@ -1,14 +1,13 @@
 #!/usr/bin/env node
 
-var db = require('../../../database/connect');
 var model = require('../../../database/models');
-var createid = require('nanoid');
 var utils = require('../../utils/responses');
 
 function getProducts(req, res, ops){
     //var products = db.collection('products');
 
     model.Product.find(null, '-_id -_v', (err, doc) =>{
+
         if(err) {
             console.log('[ERROR]products/getProducts:', err);
             utils.jsonBadResponse(res, 404);
@@ -62,69 +61,6 @@ function getProductsByCategory(req, res, ops){
 
     })
 }
-
-/*function setProduct(req, res, ops){
-
-    //validating parameters
-    if( ops.name
-        && ops.description
-        && ops.price ) {
-
-        var product = new model.Product({
-            id: 'product-' + createid(),
-            productname: ops.name,
-            description: ops.description,
-            price: ops.price,
-            category: ops.category,
-            imageurl: ops.imageurl,
-            timestamp: Date()
-        });
-
-        product.save((err, doc) => {
-            if (err) {
-                console.log('[ERROR]products/setProduct: Error al intentar guardar',error);
-                utils.jsonBadResponse(res, 507);
-            } else {
-                console.log('products/setProduct: El elemento se guardo_ correctamente', doc.id);
-                utils.jsonResponse(res, 200, { productid: doc.id });
-            }
-        });
-        
-    } else {
-
-        console.log('[BAD]products/setProduct: Bad request');
-        utils.jsonBadResponse(res, 400);
-
-    }
-
-}
-
-function updateProduct(req, res, ops){
-    console.log(ops);
-    model.Product.findOneAndUpdate({id: ops.id}, {
-            id: ops.id,
-            productname: ops.name,
-            description: ops.description,
-            price: ops.price,
-            class: ops.class,
-            imageurl: ops.imageurl,
-            updated: Date()
-    },{ useFindAndModify: false }, (err, doc, result) => {
-        
-        if (err) {
-
-            console.log('[ERROR]products/updateProduct: Error al intentar actualizar',error);
-            utils.jsonBadResponse(res, 507);
-
-        } else {
-
-            console.log('products/updateProduct: El elemento se actualizo_ correctamente', doc.id);
-            utils.jsonResponse(res, 200, { productid: doc.id });
-            
-        }
-
-    })
-}*/
 
 module.exports = {
      getProducts

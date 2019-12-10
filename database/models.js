@@ -46,6 +46,20 @@ var Product = mongoose
                     updated: Date
                 },{ collection: 'products' }))
 
+
+var Message = mongoose
+                .model('message',new Schema({
+                    id: String,
+                    from_id: String,
+                    to_id: String,
+                    sender_name: String,
+                    receiver_name: String,
+                    message: String,
+                    product_id: String,
+                    timestamp: Date
+                },{ collection: 'messages' }))
+
+
 var Category = mongoose
                 .model('category',new Schema({
                     id: String,
@@ -71,5 +85,6 @@ module.exports = {
     Product,
     Category,
     Pub,
+    Message,
     Friend
 }

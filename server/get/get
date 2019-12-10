@@ -1,8 +1,7 @@
 #!/usr/bin/env node
 
-var route = require('./routes/routes');
 var products = require('./routes/products');
-var categories = require('./routes/categories');
+var messages = require('./routes/messages')
 var contacts = require('./routes/contacts');
 var c_urlparser = require('../../build/Release/urlparser.node');
 
@@ -14,13 +13,8 @@ function get(req, res, ops){
     var url = c_urlparser.parse(req.url);
 
     
-    /*if(url.path === '/'){
-
-        route.home(req, res);
-
-    }
-    
-    else*/ if(url.path === '/getProducts') {
+    /**@Products */
+    if(url.path === '/getProducts') {
 
         products.getProducts(req, res, url);
         use = true;
@@ -39,17 +33,16 @@ function get(req, res, ops){
         use = true;
     }
 
+    /**@Messages */
+    else if( url.path === '/getProductsByCategory' ){
+        messages.getMessages(req, res, url)
+        use = true;
+    }
+
 
     /**@Contacts */
     else if(url.path === 'searchContact') {
         contacts.searchContact(req, res, url);
-    }
-
-    else {
-
-        //res.writeHead(200);
-        //res.end();
-
     }
 
     return use;

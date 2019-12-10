@@ -1,0 +1,25 @@
+#!/usr/bin/env node
+
+var model = require('../../../database/models');
+var utils = require('../../utils/responses');
+
+function getMessages(req, res, ops){
+    //var products = db.collection('products');
+
+    model.Message.find({'from_id': ops.from_id, 'to_id': ops.to_id }, '-_id -_v', (err, doc) =>{
+
+        if(err) {
+            console.log('[ERROR]messages/getMessages:', err);
+            utils.jsonBadResponse(res, 404);
+            return
+        }
+
+        utils.jsonResponse(res, 200, doc);
+
+    })
+    
+}
+
+module.exports = {
+    getMessages
+}
