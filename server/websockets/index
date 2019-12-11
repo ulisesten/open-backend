@@ -36,7 +36,7 @@ function setMessage(socket, message){
         if (err) {
             socket.emit('error','mensaje no guardado');
         } else {
-            console.log('Websockets/index: El mensaje se guardO correctamente', doc.id);
+            console.log('Websockets/index: El mensaje se guardO correctamente', doc);
         }
     });
 
