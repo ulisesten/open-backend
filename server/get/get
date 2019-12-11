@@ -34,7 +34,7 @@ function get(req, res, ops){
     }
 
     /**@Messages */
-    else if( url.path === '/getProductsByCategory' ){
+    else if( url.path === '/getMessages' ){
         messages.getMessages(req, res, url)
         use = true;
     }
