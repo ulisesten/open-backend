@@ -21,7 +21,7 @@ function websockets(io){
             data.timestamp = new Date();
 
             var message = new model.Message(data);
-            setMessage(message);
+            setMessage(socket, message);
 
             io.to(data.toId).emit('message', data);
 
