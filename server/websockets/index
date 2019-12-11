@@ -23,7 +23,7 @@ function websockets(io){
             var message = new model.Message(data);
             setMessage(socket, message);
 
-            io.to(data.toId).emit('message', data);
+            io.to(data.to_id).emit('message', data);
 
         });
         
