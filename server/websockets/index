@@ -24,6 +24,7 @@ function websockets(io){
             setMessage(socket, message);
 
             io.to(data.to_id).emit('message', data);
+            socket.emit('message', data);
 
         });
         
