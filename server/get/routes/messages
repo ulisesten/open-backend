@@ -6,7 +6,7 @@ var utils = require('../../utils/responses');
 function getMessages(req, res, ops){
     //var products = db.collection('products');
 
-    model.Message.find({'from_id': ops.from_id, 'to_id': ops.to_id, 'product_id': ops.product_id }, '-_id -_v', (err, doc) =>{
+    model.Message.find({'from_id': { $in: [ops.from_id, ops.to_id] }, 'to_id': { $in: [ops.from_id, ops.to_id] }, 'product_id': ops.product_id }, '-_id -_v', (err, doc) =>{
 
         if(err) {
             console.log('[ERROR]messages/getMessages:', err);
