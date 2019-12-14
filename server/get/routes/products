@@ -62,10 +62,27 @@ function getProductsByCategory(req, res, ops){
     })
 }
 
+function getCovers(req, res, ops){
+    //var products = db.collection('products');
+
+    model.Cover.find(null, '-_id -_v', (err, doc) =>{
+
+        if(err) {
+            console.log('[ERROR]products/getProducts:', err);
+            utils.jsonBadResponse(res, 404);
+            return
+        }
+
+        utils.jsonResponse(res, 200, doc);
+
+    })
+    
+}
+
 module.exports = {
      getProducts
     ,getProductDetails
     ,getProductsByCategory
-    //,setProduct
+    ,getCovers
     //,updateProduct
 }

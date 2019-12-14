@@ -22,6 +22,10 @@ function post(req, res, ops){
         products.updateProduct( req, res, ops );
 
     else
+    if( req.url === '/setCover' )
+        products.setCover( req, res, ops );
+
+    else
         res.end();
     
 }

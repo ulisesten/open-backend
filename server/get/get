@@ -39,8 +39,13 @@ function get(req, res, ops){
         use = true;
     }
 
-    else if( url.path == '/getNotifications'){
+    else if( url.path === '/getNotifications' ){
         messages.getMessageNotifications(req, res, url);
+        use = true;
+    }
+
+    else if( url.path === '/getCovers' ){
+        products.getCovers( req, res, url );
         use = true;
     }
 

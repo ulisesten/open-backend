@@ -59,6 +59,17 @@ var Message = mongoose
                     timestamp: Date
                 },{ collection: 'messages' }))
 
+var Cover = mongoose
+                .model('cover',new Schema({
+                    id: String,
+                    cover_id: String,
+                    seller_id: String,
+                    seller_name: String,
+                    description: String,
+                    category: String,
+                    timestamp: Date,
+                    expiration_date: Date
+                },{ collection: 'covers' }))
 
 var Category = mongoose
                 .model('category',new Schema({
@@ -81,10 +92,11 @@ var Friend = mongoose
 
 
 module.exports = {
-    User,
-    Product,
-    Category,
-    Pub,
-    Message,
-    Friend
+     User
+    ,Product
+    ,Category
+    ,Pub
+    ,Message
+    ,Cover
+    ,Friend
 }

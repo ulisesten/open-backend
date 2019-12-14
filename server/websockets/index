@@ -12,7 +12,6 @@ function websockets(io){
         
         socket.join(id);
         
-        
         console.log('websockets', 'connected');
 
         socket.on('message', function(data) {

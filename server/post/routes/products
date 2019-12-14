@@ -84,7 +84,60 @@ function updateProduct(req, res, ops){
     })
 }
 
+function setCover(req, res, ops){
+    var body = '';
+
+    /** handle body */
+    req.on('data', data => {    body += data;    });
+
+    req.on('end', () => {
+            
+        body = parser.parseJson(body);
+
+        console.log('Testing setCover...');
+        console.log('body:',body);
+
+        //validating parameters
+        if(    body.cover_id
+            && body.description
+            && body.seller_id
+            && body.seller_name ) {
+
+                var date = new Date();
+                var days = 15;
+
+                body.id = 'cover-' + createid();
+                body.timestamp = date;
+                body.expiration_date = date.setTime(
+                    date.getTime() + days * 86400000
+                );
+
+            var cover = new model.Cover(body);
+
+            cover.save((err, doc) => {
+                if (err) {
+                    console.log('[ERROR]products/setCover: Error al intentar guardar',err);
+                    utils.jsonBadResponse(res, 507);
+                } else {
+                    console.log('products/setCover: El elemento se guardo_ correctamente', doc.id);
+                    utils.jsonResponse(res, 200, { productid: doc.id });
+                }
+            });
+            
+        } else {
+
+            console.log('[BAD]products/setCover: Bad request');
+            utils.jsonBadResponse(res, 400);
+
+        }
+
+    });
+
+}
+
+
 module.exports = {
     setProduct
    ,updateProduct
+   ,setCover
 }
