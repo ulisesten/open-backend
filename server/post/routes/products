@@ -135,9 +135,57 @@ function setCover(req, res, ops){
 
 }
 
+function setTodayNumber(req, res, ops){
+    var body = '';
+
+    /** handle body */
+    req.on('data', data => {    body += data;    });
+
+    req.on('end', () => {
+            
+        body = parser.parseJson(body);
+
+        console.log('Testing setTodayNumber...');
+        console.log('body:',body);
+
+        //validating parameters
+        if(    body.number
+            && body.description ) {
+
+                body.id = 'number-' + createid();
+                body.timestamp = new Date();
+                
+
+            var num = new model.Number(body);
+
+            num.save((err, doc) => {
+                if (err) {
+
+                    console.log('[ERROR]products/setTodayNumber: Error al intentar guardar',err);
+                    utils.jsonBadResponse(res, 507);
+
+                } else {
+                    console.log('products/setTodayNumber: El elemento se guardo_ correctamente', doc.id);
+                    utils.jsonResponse(res, 200, { productid: doc.id });
+                    
+                }
+            });
+            
+        } else {
+
+            console.log('[BAD]products/setTodayNumber: Bad request');
+            utils.jsonBadResponse(res, 400);
+
+        }
+
+    });
+
+}
+
 
 module.exports = {
     setProduct
    ,updateProduct
    ,setCover
+   ,setTodayNumber
 }

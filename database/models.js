@@ -71,6 +71,14 @@ var Cover = mongoose
                     expiration_date: Date
                 },{ collection: 'covers' }))
 
+var Number = mongoose
+                .model('number',new Schema({
+                    id: String,
+                    number: String,
+                    description: String,
+                    timestamp: Date
+                },{ collection: 'numbers' }))
+
 var Category = mongoose
                 .model('category',new Schema({
                     id: String,

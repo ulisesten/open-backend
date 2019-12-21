@@ -26,6 +26,10 @@ function post(req, res, ops){
         products.setCover( req, res, ops );
 
     else
+    if( req.url === '/setTodayNumber')
+        products.setTodayNumaber( req, res, ops );
+
+    else
         res.end();
     
 }
