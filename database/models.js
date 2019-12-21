@@ -76,6 +76,7 @@ var Number = mongoose
                     id: String,
                     number: String,
                     description: String,
+                    visible: Boolean,
                     timestamp: Date
                 },{ collection: 'numbers' }))
 
@@ -106,5 +107,6 @@ module.exports = {
     ,Pub
     ,Message
     ,Cover
+    ,Number
     ,Friend
 }

@@ -79,10 +79,28 @@ function getCovers(req, res, ops){
     
 }
 
+function getTodayNumber(req, res, ops){
+    //var products = db.collection('products');
+
+    model.Number.find({ visible: true }).sort({ timestamp: '-1'}).limit(1).exec((err, doc) =>{
+
+        if(err) {
+            console.log('[ERROR]products/getTodayNumber:', err);
+            utils.jsonBadResponse(res, 404);
+            return
+        }
+
+        utils.jsonResponse(res, 200, doc);
+
+    })
+    
+}
+
 module.exports = {
      getProducts
     ,getProductDetails
     ,getProductsByCategory
     ,getCovers
+    ,getTodayNumber
     //,updateProduct
 }

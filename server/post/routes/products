@@ -153,6 +153,7 @@ function setTodayNumber(req, res, ops){
             && body.description ) {
 
                 body.id = 'number-' + createid();
+                body.visible = true;
                 body.timestamp = new Date();
                 
 
@@ -167,7 +168,7 @@ function setTodayNumber(req, res, ops){
                 } else {
                     console.log('products/setTodayNumber: El elemento se guardo_ correctamente', doc.id);
                     utils.jsonResponse(res, 200, { productid: doc.id });
-                    
+
                 }
             });
             

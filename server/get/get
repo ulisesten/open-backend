@@ -49,6 +49,11 @@ function get(req, res, ops){
         use = true;
     }
 
+    else if( url.path === '/getTodayNumber' ){
+        products.getTodayNumber( req, res, url );
+        use = true;
+    }
+
 
     /**@Contacts */
     else if(url.path === 'searchContact') {
