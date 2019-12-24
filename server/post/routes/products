@@ -157,7 +157,7 @@ function setTodayNumber(req, res, ops){
                 body.timestamp = new Date();
                 
 
-            var num = new model.Number(body);
+            var num = new model.TodayNumber(body);
 
             num.save((err, doc) => {
                 if (err) {
