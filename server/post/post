@@ -27,7 +27,7 @@ function post(req, res, ops){
 
     else
     if( req.url === '/setTodayNumber')
-        products.setTodayNumaber( req, res, ops );
+        products.setTodayNumber( req, res, ops );
 
     else
         res.end();
