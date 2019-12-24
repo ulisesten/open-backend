@@ -71,7 +71,7 @@ var Cover = mongoose
                     expiration_date: Date
                 },{ collection: 'covers' }))
 
-var Number = mongoose
+var TodayNumber = mongoose
                 .model('number',new Schema({
                     id: String,
                     number: String,
@@ -107,6 +107,6 @@ module.exports = {
     ,Pub
     ,Message
     ,Cover
-    ,Number
+    ,TodayNumber
     ,Friend
 }

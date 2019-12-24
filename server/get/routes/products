@@ -81,7 +81,7 @@ function getCovers(req, res, ops){
 function getTodayNumber(req, res, ops){
     //var products = db.collection('products');
 
-    model.Number.find({ visible: true }, '-_id -_v',(err, doc) =>{
+    model.TodayNumber.find({ visible: true }, '-_id -_v',(err, doc) =>{
 
         if(err) {
             console.log('[ERROR]products/getTodayNumber:', err);
