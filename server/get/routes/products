@@ -4,7 +4,6 @@ var model = require('../../../database/models');
 var utils = require('../../utils/responses');
 
 function getProducts(req, res, ops){
-    //var products = db.collection('products');
 
     model.Product.find(null, '-_id -_v', (err, doc) =>{
 
@@ -23,7 +22,7 @@ function getProducts(req, res, ops){
 function getProductDetails(req, res, ops){
     //var products = db.collection('products');
 
-    console.log('getOneProduct:', ops);
+    //console.log('getOneProduct:', ops);
 
     model.Product.findOne({ id: ops.id }, '-_id -__v', (err, doc) => {
 
@@ -47,7 +46,7 @@ function getProductDetails(req, res, ops){
 
 function getProductsByCategory(req, res, ops){
 
-    console.log('ops',ops)
+    //console.log('ops',ops)
 
     model.Product.find({ category: ops.category }, '-_id -_v', (err, doc) =>{
         if(err || doc === null) {
@@ -56,7 +55,7 @@ function getProductsByCategory(req, res, ops){
             return
         }
 
-        console.log('doc',doc)
+        //console.log('doc',doc)
         utils.jsonResponse(res, 200, doc);
 
     })
@@ -82,7 +81,7 @@ function getCovers(req, res, ops){
 function getTodayNumber(req, res, ops){
     //var products = db.collection('products');
 
-    model.Number.find({ visible: true }).sort({ timestamp: '-1'}).limit(1).exec((err, doc) =>{
+    model.Number.find({ visible: true }, '-_id -_v',(err, doc) =>{
 
         if(err) {
             console.log('[ERROR]products/getTodayNumber:', err);
@@ -102,5 +101,4 @@ module.exports = {
     ,getProductsByCategory
     ,getCovers
     ,getTodayNumber
-    //,updateProduct
 }
