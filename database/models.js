@@ -62,7 +62,7 @@ var Message = mongoose
 var Cover = mongoose
                 .model('cover',new Schema({
                     id: String,
-                    cover_id: String,
+                    company_name: String,
                     seller_id: String,
                     seller_name: String,
                     description: String,
