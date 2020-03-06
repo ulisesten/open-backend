@@ -33,6 +33,12 @@ function get(req, res, ops){
         use = true;
     }
 
+    else if(url.path === '/searchProduct'){
+        products.searchProduct(req,res,ops);
+        use = true;
+    }
+
+
     /**@Messages */
     else if( url.path === '/getMessages' ){
         messages.getMessages(req, res, url);

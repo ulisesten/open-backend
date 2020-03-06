@@ -61,6 +61,31 @@ function getProductsByCategory(req, res, ops){
     })
 }
 
+
+function searchProduct(req, res, ops){
+
+    console.log('searchProduct', ops);
+
+    var regex = new RegExp(ops.product_name,'gi')
+    model.Product.find({ product_name: regex }, '-_id -__v', (err, doc) => {
+
+        console.log('searchProduct:',doc);
+
+        if( err || doc == null){
+
+            console.log('[ERROR]products/searchProduct: Error', err );
+            utils.jsonBadResponse(res, 404);
+
+        } else {
+
+            console.log('products/searchProduct: Item found', doc);
+            utils.jsonResponse(res, 200, doc );
+
+        }
+
+    })
+}
+
 function getCovers(req, res, ops){
     //var products = db.collection('products');
 
@@ -99,6 +124,7 @@ module.exports = {
      getProducts
     ,getProductDetails
     ,getProductsByCategory
+    ,searchProduct
     ,getCovers
     ,getTodayNumber
 }
