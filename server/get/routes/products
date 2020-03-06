@@ -68,7 +68,7 @@ function searchProduct(req, res, ops){
 
     var fields;
     if( ops.mode === 'typing'){
-        fields = 'id product_name ';
+        fields = 'id product_name -_id';
     } else {
         fields = '-_id -__v';
     }
