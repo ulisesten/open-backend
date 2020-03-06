@@ -66,8 +66,15 @@ function searchProduct(req, res, ops){
 
     console.log('searchProduct', ops);
 
+    var fields;
+    if( ops.mode === 'typing'){
+        fields = 'id product_name ';
+    } else {
+        fields = '-_id -__v';
+    }
+
     var regex = new RegExp(ops.product_name,'gi')
-    model.Product.find({ product_name: regex }, '-_id -__v', (err, doc) => {
+    model.Product.find({ product_name: regex }, fields, (err, doc) => {
 
         console.log('searchProduct:',doc);
 
