@@ -34,7 +34,7 @@ function get(req, res, ops){
     }
 
     else if(url.path === '/searchProduct'){
-        products.searchProduct(req,res,ops);
+        products.searchProduct(req, res, url);
         use = true;
     }
 
