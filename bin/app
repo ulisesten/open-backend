@@ -9,7 +9,7 @@ function app( req, res){
     var mUse = false;
 
     req.url = req.url.replace(/^(\.\.[\/\\])+/, '');
-    req.url = req.url.replace('%20','')
+    //req.url = req.url.replace('%20','')
 
     if(req.method === 'GET'){
         
