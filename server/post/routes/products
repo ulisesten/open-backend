@@ -222,7 +222,7 @@ function searchProduct(req, res, ops){
             }
 
         })
-    }
+    });
 }
 
 
