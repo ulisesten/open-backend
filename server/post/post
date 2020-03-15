@@ -14,6 +14,10 @@ function post(req, res, ops){
         auth.mobileRegister( req, res, ops );
 
     else
+    if ( req.url === '/searchProduct' )
+        products.searchProduct( req, res, ops );
+
+    else
     if ( req.url === '/setProduct' )
         products.setProduct( req, res, ops );
 

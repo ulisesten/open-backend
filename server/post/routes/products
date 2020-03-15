@@ -183,10 +183,53 @@ function setTodayNumber(req, res, ops){
 
 }
 
+/**Exception*/
+function searchProduct(req, res, ops){
+    /** testing now in post*/
+
+    var body = '';
+
+    /** handle body */
+    req.on('data', data => {    body += data;    });
+
+   
+    req.on('end', () => {
+
+        console.log('searchProduct', body);
+
+        var fields;
+        if( body.mode === 'typing'){
+            fields = 'id product_name -_id';
+        } else {
+            fields = '-_id -__v';
+        }
+
+        var regex = new RegExp(body.product_name,'gi')
+        model.Product.find({ product_name: regex }, fields, (err, doc) => {
+
+            console.log('searchProduct:',doc);
+
+            if( err || doc == null){
+
+                console.log('[ERROR]products/searchProduct: Error', err );
+                utils.jsonBadResponse(res, 404);
+
+            } else {
+
+                console.log('products/searchProduct: Item found', doc);
+                utils.jsonResponse(res, 200, doc );
+
+            }
+
+        })
+    }
+}
+
 
 module.exports = {
     setProduct
    ,updateProduct
    ,setCover
    ,setTodayNumber
+   ,searchProduct
 }

@@ -63,6 +63,7 @@ function getProductsByCategory(req, res, ops){
 
 
 function searchProduct(req, res, ops){
+    /** testing now in post*/
 
     console.log('searchProduct', ops);
 
