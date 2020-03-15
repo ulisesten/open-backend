@@ -216,7 +216,7 @@ function searchProduct(req, res, ops){
 
             } else {
 
-                console.log('products/searchProduct: Item found', doc);
+                console.log('products/searchProduct: Item found', {'arr': doc});
                 utils.jsonResponse(res, 200, doc );
 
             }
