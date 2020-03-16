@@ -194,7 +194,7 @@ function searchProduct(req, res, ops){
 
    
     req.on('end', () => {
-
+        body = parser.parseJson(body);
         console.log('searchProduct', body.query);
 
         var fields;
