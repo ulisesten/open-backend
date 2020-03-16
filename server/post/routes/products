@@ -195,7 +195,7 @@ function searchProduct(req, res, ops){
    
     req.on('end', () => {
 
-        console.log('searchProduct', body);
+        console.log('searchProduct', body.query);
 
         var fields;
         if( body.mode === 'typing'){
