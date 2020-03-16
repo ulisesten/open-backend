@@ -204,10 +204,10 @@ function searchProduct(req, res, ops){
             fields = '-_id -__v';
         }
 
-        var regex = new RegExp(body.query,'gi')
+        var regex = new RegExp(body.query,'i')
         model.Product.find({ product_name: regex }, fields, (err, doc) => {
 
-            console.log('searchProduct:',doc);
+            //console.log('searchProduct:',doc);
 
             if( err || doc == null){
 
