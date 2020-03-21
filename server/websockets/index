@@ -26,8 +26,12 @@ function websockets(io){
             var senderClient = io.sockets.adapter.rooms[id];
             var receiverClient = io.sockets.adapter.rooms[data.to_id];
 
-            console.log('Sender client', senderClient);
+            console.log('Sender client:', senderClient);
             console.log('Receiver client:', receiverClient);//Querying clients in a given room
+
+            if( receiverClient === undefined ){
+                console.log('Websockets:', 'Receiver not connected');
+            }
 
             io.to(data.to_id).emit('message', data);
 
