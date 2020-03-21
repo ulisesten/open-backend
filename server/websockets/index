@@ -23,9 +23,9 @@ function websockets(io){
             var message = new model.Message(data);
             setMessage(socket, message);
 
-            var senderClient = io.sockets.adapter.rooms[data.from_id];
+            var senderClient = io.sockets.adapter.rooms[id];
             var receiverClient = io.sockets.adapter.rooms[data.to_id];
-            
+
             console.log('Sender client', senderClient);
             console.log('Receiver client:', receiverClient);//Querying clients in a given room
 
