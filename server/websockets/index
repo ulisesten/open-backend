@@ -23,7 +23,11 @@ function websockets(io){
             var message = new model.Message(data);
             setMessage(socket, message);
 
+            var roomClients = io.sockets.adapter.rooms[data.to_id].sockets;
+            console.log('Room clients:', roomClients);//Querying clients in a given room
+
             io.to(data.to_id).emit('message', data);
+
             socket.emit('message', data);
 
         });
