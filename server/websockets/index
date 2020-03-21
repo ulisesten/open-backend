@@ -8,15 +8,16 @@ function websockets(io){
     io.on('connection', socket => {
 
         var id = socket.handshake.query['id'];
-        console.log('user_id', id)
+        //console.log('user_id', id)
         
-        socket.join(id);
+        socket.leave(socket.id);//leaving default room
+        socket.join(id);//joining to custom room
         
-        console.log('websockets', 'connected');
+        //console.log('Websockets:', 'connected');
 
         socket.on('message', function(data) {
             
-            console.log('websockets', data);
+            //console.log('websockets', data);
             data.timestamp = new Date();
 
             var message = new model.Message(data);
