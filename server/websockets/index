@@ -34,7 +34,7 @@ function websockets(io){
                 console.log('Websockets:', 'Receiver not connected');
                 
                 /** Send a message to the sender notifying that receiver is not connected */
-                socket.emit('receiverNotConnected', {'to_id': data.to_id, 'sender_name': data.sender_name})
+                socket.emit('receiverNotConnected', {'to_id': data.to_id, 'sender_name': data.sender_name, 'product_id': data.product_id })
             }
 
             io.to(data.to_id).emit('message', data);
