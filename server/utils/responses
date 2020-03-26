@@ -24,8 +24,10 @@ function jsonBadResponse(res, status){
 
 
 function createDatabaseUserInfoObject(req, body, hash){
+
     var myObject = {
         id: nanoid(),
+        device_id: body.device_id,
         email: body.email,
         username: body.username,
         password: hash,

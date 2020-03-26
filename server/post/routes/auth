@@ -15,7 +15,7 @@ function onLogin(res, err, auth, data){
         /** AUTHORIZED */
         console.log('mobileLogin usuario AUTHORIZED')
         var token = jwt.createJsonWebToken(data);
-        util.jsonResponse(res, 200, { id: data.id, username: data.username, credentials: token});
+        util.jsonResponse(res, 200, { id: data.id, device_id: data.device_id, username: data.username, credentials: token});
 
     } else {
 
@@ -39,7 +39,7 @@ function onRegister(res, err, data){
         /** Saved successfuly */
         console.log('mobileRegister El siguiente usuario se guard_o correctamente:', data.username);
         var token = jwt.createJsonWebToken(data);
-        util.jsonResponse(res, 200, {id: data.id, username: data.username, credentials: token });
+        util.jsonResponse(res, 200, {id: data.id, device_id: data.device_id, username: data.username, credentials: token });
 
     }
 
