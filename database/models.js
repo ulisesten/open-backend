@@ -7,6 +7,7 @@ var Schema = mongoose.Schema;
 var User = mongoose
                 .model('users',new Schema({
                     id: String,
+                    device_id: String,
                     email: String,
                     username: String,
                     password: String,
@@ -34,6 +35,7 @@ var Pub = mongoose
 var Product = mongoose
                 .model('product',new Schema({
                     seller_id: String,
+                    seller_device_id: String,
                     seller_name: String,
                     id: String,
                     product_name: String,
@@ -50,7 +52,9 @@ var Product = mongoose
 var Message = mongoose
                 .model('message',new Schema({
                     id: String,
+                    from_device_id: String,
                     from_id: String,
+                    to_device_id: String,
                     to_id: String,
                     sender_name: String,
                     receiver_name: String,
