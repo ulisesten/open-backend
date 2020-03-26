@@ -3,12 +3,15 @@
 var model = require('../../database/models');
 var admin = require("firebase-admin");
 
-var serviceAccount = process.env.GOOGLE_APPLICATION_CREDENTIALS  || require("../keys/mlvalles-key.json");
+//var serviceAccount = process.env.GOOGLE_APPLICATION_CREDENTIALS || require("../keys/mlvalles-key.json");
 
 //console.log('key', serviceAccount);
 
 admin.initializeApp({
-    credential: admin.credential.applicationDefault(),
+    credential: admin.credential.cert({
+        "private_key": process.env.FIREBASE_PRIVATE_KEY,
+        "client_email": process.env.FIREBASE_CLIENT_EMAIL
+    }),
     databaseURL: "https://mlvalles-741ec.firebaseio.com"
   });
 
