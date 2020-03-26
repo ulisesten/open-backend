@@ -1,6 +1,16 @@
 #! usr/bin/env node
 
 var model = require('../../database/models');
+var admin = require("firebase-admin");
+
+var serviceAccount = process.env.FIREBASE_KEY || require("../keys/mlvalles-key.json");
+
+//console.log('key', serviceAccount);
+
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: "https://mlvalles-741ec.firebaseio.com"
+  });
 
 /** Websockets */
 function websockets(io){
@@ -34,11 +44,19 @@ function websockets(io){
                 console.log('Websockets:', 'Receiver not connected');
                 
                 /** Send a message to the sender notifying that receiver is not connected */
-                socket.emit('receiverNotConnected', {'to_id': data.to_id, 'sender_name': data.sender_name, 'product_id': data.product_id })
+                //socket.emit('receiverNotConnected', {'to_id': data.to_id, 'sender_name': data.sender_name, 'product_id': data.product_id })
+
+                var registrationToken = 'craSzMH-4Ew:APA91bFBunT61dykQ4RnsTDy-kSvspdSl1PpJFWogslmj4R9wVDfG9QLdFdTZmNf_VTELatUUmCEv92p2nATpUPqH9JCxa9qxr5CjUNy7V6w1ZNNcBWR3ddvkAjv-x-m4MqioZXvyYAT';
+                sendFCMMessage(registrationToken);
+
+            } else {
+
+                //private message to data.to_id socket
+                io.to(data.to_id).emit('message', data);
+
             }
-
-            io.to(data.to_id).emit('message', data);
-
+            //sending to sender
+            data.sent = true
             socket.emit('message', data);
 
         });
@@ -56,6 +74,28 @@ function setMessage(socket, message){
         }
     });
 
+}
+
+function sendFCMMessage(registrationToken){
+    var message = {
+        data: {
+          name: 'test name',
+          message: 'test message body'
+        },
+        token: registrationToken
+      };
+      
+      // Send a message to the device corresponding to the provided
+      // registration token.
+      admin.messaging().send(message)
+        .then((response) => {
+          // Response is a message ID string.
+          console.log('Successfully sent message:', response);
+        })
+        .catch((error) => {
+          console.log('Error sending message:', error);
+        });
+      
 }
 
 module.exports = websockets;
