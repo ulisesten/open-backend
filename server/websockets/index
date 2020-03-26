@@ -5,7 +5,7 @@ var admin = require("firebase-admin");
 
 var serviceAccount = process.env.FIREBASE_KEY || require("../keys/mlvalles-key.json");
 
-//console.log('key', serviceAccount);
+console.log('key', serviceAccount);
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
