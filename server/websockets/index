@@ -3,12 +3,12 @@
 var model = require('../../database/models');
 var admin = require("firebase-admin");
 
-var serviceAccount = process.env.FIREBASE_KEY || require("../keys/mlvalles-key.json");
+var serviceAccount = process.env.GOOGLE_APPLICATION_CREDENTIALS  || require("../keys/mlvalles-key.json");
 
-console.log('key', serviceAccount);
+//console.log('key', serviceAccount);
 
 admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
+    credential: admin.credential.applicationDefault(),
     databaseURL: "https://mlvalles-741ec.firebaseio.com"
   });
 
