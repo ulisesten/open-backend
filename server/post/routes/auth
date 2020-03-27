@@ -151,7 +151,39 @@ function mobileRegister(req, res, ops){
 
 }
 
+function updateProfile(req, res, ops){
+
+    var body = '';
+
+    req.on('data', data => {    body += data;    });
+
+    req.on('end', () => {
+            
+        body = parser.parseJson(body);
+
+        usersCollection.findOneAndUpdate({id: body.id}
+            , { 'device_id': body.device_id } 
+            , { useFindAndModify: false }, (err, doc, result) => {
+        
+            if (err) {
+
+                console.log('[ERROR]products/updateProduct: Error al intentar actualizar',err);
+                utils.jsonBadResponse(res, 507);
+
+            } else {
+
+                console.log('products/updateProduct: El elemento se actualizo_ correctamente', doc.id);
+                utils.jsonResponse(res, 200, { productid: doc.id });
+                
+            }
+
+        })
+
+    })
+}
+
 module.exports = {
     mobileLogin,
-    mobileRegister
+    mobileRegister,
+    updateProfile
 }

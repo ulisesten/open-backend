@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 var auth = require('./routes/auth');
-var info = require('./routes/info')
 var products = require('./routes/products');
 
 function post(req, res, ops){
@@ -32,6 +31,10 @@ function post(req, res, ops){
     else
     if( req.url === '/setTodayNumber')
         products.setTodayNumber( req, res, ops );
+
+    else
+    if( req.url === '/updateProfile' )
+        auth.updateProfile( req, res, ops );
 
     else
         res.end();

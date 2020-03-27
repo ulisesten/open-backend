@@ -47,15 +47,25 @@ Nodejs backend with c/c++ addons
 
      url: /setProduct
 
-     body:
+     body: {
+            seller_id: String,
+            seller_device_id: String,
+            seller_name: String,
+            product_name: String,
+            description: String,
+            price: Number,
+            category: String,
+            count: Number,
+            image_array: Array
+        }
 
 ### Update a product
 
     POST
 
-    url: /pudateProduct
+    url: /updateProduct
 
-    body:
+    body: //same as setProduct
         
 
  ## Developers
