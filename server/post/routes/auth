@@ -161,7 +161,7 @@ function updateProfile(req, res, ops){
             
         body = parser.parseJson(body);
 
-        usersCollection.findOneAndUpdate({id: body.profile_id}
+        model.User.findOneAndUpdate({id: body.profile_id}
             , { 'device_id': body.device_id } 
             , { useFindAndModify: false }, (err, doc, result) => {
         
