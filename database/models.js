@@ -54,6 +54,7 @@ var Message = mongoose
                     id: String,
                     from_id: String,
                     to_id: String,
+                    from_device_id:String,
                     sender_name: String,
                     receiver_name: String,
                     message: String,

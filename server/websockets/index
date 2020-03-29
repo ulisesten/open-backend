@@ -34,6 +34,7 @@ function websockets(io){
             
             //console.log('websockets', data);
             data.timestamp = new Date();
+            if( data.from_device_id === undefined) data.from_device_id = ""
 
             var message = new model.Message(data);
             setMessage(socket, message);
@@ -56,8 +57,6 @@ function websockets(io){
                     sendFCMMessage(data.to_device_id, data.sender_name);
 
             } else {
-
-                if( data.from_device_id === undefined) data.from_device_id = ""
 
                 //private message to data.to_id socket
                 io.to(data.to_id).emit('message', data);
