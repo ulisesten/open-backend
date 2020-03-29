@@ -167,12 +167,12 @@ function updateProfile(req, res, ops){
         
             if (err) {
 
-                console.log('[ERROR]products/updateProduct: Error al intentar actualizar',err);
+                console.log('[ERROR]products/updateProfile: Error al intentar actualizar',err);
                 util.jsonBadResponse(res, 507);
 
             } else {
 
-                console.log('products/updateProduct: El elemento se actualizo_ correctamente', doc.id);
+                console.log('products/updateProfile: El elemento se actualizo_ correctamente', doc.id);
                 util.jsonResponse(res, 200, { productid: doc.id });
                 
             }

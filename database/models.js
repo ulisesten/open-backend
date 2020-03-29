@@ -52,9 +52,7 @@ var Product = mongoose
 var Message = mongoose
                 .model('message',new Schema({
                     id: String,
-                    from_device_id: String,
                     from_id: String,
-                    to_device_id: String,
                     to_id: String,
                     sender_name: String,
                     receiver_name: String,
