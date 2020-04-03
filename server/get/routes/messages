@@ -21,7 +21,7 @@ function getMessages(req, res, ops){
 }
 
 function getMessageNotifications(req, res, ops){
-    model.Message.find({'to_id': ops.to_id }, '-_id -_v', (err, doc) =>{
+    model.Message.find({'to_id': ops.to_id }, '-_id -_v', {$group: 'product_id'} ,(err, doc) =>{
 
         if(err) {
             console.log('[ERROR]messages/getMessages:', err);
