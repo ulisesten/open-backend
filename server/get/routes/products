@@ -77,7 +77,7 @@ function searchProduct(req, res, ops){
     var regex = new RegExp(ops.product_name,'gi')
     model.Product.find({ product_name: regex }, fields, (err, doc) => {
 
-        console.log('searchProduct:',doc);
+        //console.log('searchProduct:',doc);
 
         if( err || doc == null){
 
