@@ -23,7 +23,8 @@ function setProduct(req, res, ops){
         //validating parameters
         if(    body.product_name
             && body.description
-            && body.price ) {
+            && body.price
+            && body.shape ) {
 
                 body.id = 'product-' + createid();
                 body.timestamp = new Date();
