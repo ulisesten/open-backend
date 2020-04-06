@@ -42,6 +42,7 @@ var Product = mongoose
                     description: String,
                     price: Number,
                     category: String,
+                    shape: String,
                     count: Number,
                     image_array: Array,
                     timestamp: Date,
