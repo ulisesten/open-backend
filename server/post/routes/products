@@ -205,7 +205,7 @@ function searchProduct(req, res, ops){
             fields = '-_id -__v';
         }
 
-        var regex = new RegExp(body.query,'i')
+        var regex = new RegExp(body.query,'gi')
         model.Product.find({ product_name: regex }, fields, (err, doc) => {
 
             //console.log('searchProduct:',doc);
