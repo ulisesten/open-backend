@@ -99,7 +99,8 @@ function setCover(req, res, ops){
         console.log('body:',body);
 
         //validating parameters
-        if(    body.cover_id
+        if( body !== null
+            && body.cover_id
             && body.description
             && body.seller_id
             && body.seller_name ) {
