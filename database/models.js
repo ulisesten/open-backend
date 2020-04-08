@@ -72,7 +72,7 @@ var Cover = mongoose
                     description: String,
                     category: String,
                     timestamp: Date,
-                    expiration_date: Date
+                    exp_date: Date
                 },{ collection: 'covers' }))
 
 var TodayNumber = mongoose
