@@ -15,7 +15,7 @@ var User = mongoose
                     profile_cover: String,
                     role: Number,
                     user_ip: Array,
-                    contrib: Boolean,
+                    founder: Boolean,
                     timestamp: Date
                 },{collection: 'usuarios'}))
 

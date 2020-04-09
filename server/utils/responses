@@ -34,7 +34,7 @@ function createDatabaseUserInfoObject(req, body, hash){
         image: null,
         role: 0,
         user_ip: req.connection.remoteAddress,
-        contrib: true,
+        founder: true,
         timestamp: Date()
     };
 
