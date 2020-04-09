@@ -110,7 +110,7 @@ function setCover(req, res, ops){
 
                 body.id = 'cover-' + createid();
                 body.timestamp = date;
-                body.expiration_date = date.setTime(
+                body.exp_date = date.setTime(
                     date.getTime() + days * 86400000
                 );
 

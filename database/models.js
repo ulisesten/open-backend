@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var db = require('./connect');
+//var db = require('./connect');
 
 
 var Schema = mongoose.Schema;
