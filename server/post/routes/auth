@@ -61,7 +61,7 @@ function mobileLogin(req, res, ops){
 
             if(body !== null){
                 /** Search for user */
-                usersCollection.findOne({ 'email': body.email},'-image -role -user_ip -contrib -timestamp', function(err, doc){
+                usersCollection.findOne({ 'email': body.email},'-image -role -user_ip -timestamp', function(err, doc){
 
                     if(!doc){
 
