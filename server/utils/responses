@@ -38,7 +38,7 @@ function createDatabaseUserInfoObject(req, body, hash){
         timestamp: Date()
     };
 
-    console.log('userInfoObject', myObject);
+    console.log('creating user info:', myObject);
 
     return myObject;
 }
