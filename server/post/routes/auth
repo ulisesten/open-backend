@@ -132,7 +132,7 @@ function mobileRegister(req, res, ops){
                 } else {
 
                     /**The info is not available */
-                    console.log('[BAD!]mobileRegister:','Info not available. El usuario existe');
+                    console.log('[BAD!]mobileRegister:','Info not available. El usuario ya existe');
                     util.jsonBadResponse(res, 401);
 
                 }
@@ -167,12 +167,12 @@ function updateProfile(req, res, ops){
         
             if (err) {
 
-                console.log('[ERROR]products/updateProfile: Error al intentar actualizar',err);
+                console.log('[ERROR]auth/updateProfile: Error al intentar actualizar',err);
                 util.jsonBadResponse(res, 507);
 
             } else {
 
-                console.log('products/updateProfile: El elemento se actualizo_ correctamente', doc.id);
+                console.log('auth/updateProfile: El elemento se actualizo_ correctamente', doc.id);
                 util.jsonResponse(res, 200, { productid: doc.id });
                 
             }
@@ -182,8 +182,31 @@ function updateProfile(req, res, ops){
     })
 }
 
+function validateSession(req, res, ops){
+    var body = '';
+
+    req.on('data', data => {    body += data;    });
+
+    req.on('end', () => {
+        var isAuth = jwt.decodeToken(body.token)
+
+        if( isAuth !== null && isAuth !== undefined) {
+
+            console.log('auth/validateSession: Valid credentials', doc.id);
+            util.jsonResponse(res, 200, { id: isAuth.id });
+
+        } else {
+
+            console.log('[ERROR]auth/validateSession: Invalid credentials',err);
+            util.jsonBadResponse(res, 401);
+
+        }
+    })
+}
+
 module.exports = {
-    mobileLogin,
-    mobileRegister,
-    updateProfile
+     mobileLogin
+    ,mobileRegister
+    ,updateProfile
+    ,validateSession
 }
