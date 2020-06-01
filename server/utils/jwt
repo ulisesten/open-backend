@@ -8,8 +8,10 @@ var secret = process.env.SECRET_SIMPLE || 'skghksdngjhkjjk34wdfn894jk3';
 
 function createJsonWebToken(data){
     //return jwt.encode(data, secret);
-    console.log('secret',secret);
-    return jwt.sign( data, secret );
+    
+    var token = jwt.sign( data, secret );
+    console.log('token:',token);
+    return token
 }
 
 function decodeToken(token){
@@ -18,7 +20,7 @@ function decodeToken(token){
     console.log('secret',secret);
     
     try {
-        return jwt.verify( token, secret );
+        return jwt.verify( token , secret );
     } catch (error) {
         console.log('jwt', error);
         return null;
