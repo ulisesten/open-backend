@@ -1,17 +1,26 @@
 #!/usr/bin/env node
 
-var jwt = require('jwt-simple');
+//var jwt = require('jwt-simple');
+var jwt = require('jsonwebtoken');
 
 var secret = process.env.SECRET || 'skghksdngjhkjjk34wdfn894jk3';
 
 function createJsonWebToken(data){
-    return jwt.encode(data, secret);
+    //return jwt.encode(data, secret);
+
+    return jwt.sign( data, secret );
 }
 
 function decodeToken(token){
 
-    return jwt.decode(token, secret);
+    //return jwt.decode(token, secret);
     
+    try {
+        return jwt.verify( token, secret );
+    } catch (error) {
+        return null;
+    }
+
 }
 
 
