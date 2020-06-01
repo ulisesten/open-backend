@@ -188,6 +188,10 @@ function validateSession(req, res, ops){
     req.on('data', data => {    body += data;    });
 
     req.on('end', () => {
+
+        body = parser.parseJson(body);
+
+        console.log( body.token );
         var isAuth = jwt.decodeToken(body.token)
 
         if( isAuth !== null && isAuth !== undefined) {

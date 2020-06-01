@@ -15,6 +15,7 @@ function post(req, res, ops){
     else
     if( req.url === '/verify_session' ) {
         console.log('[POST] verify_session');
+        auth.validateSession( req, res, ops );
     }
 
     else
