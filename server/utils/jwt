@@ -20,7 +20,11 @@ function decodeToken(token){
     console.log('secret',secret);
     
     try {
-        return jwt.verify( token , secret );
+
+        var decoded = jwt.verify( token , secret );
+        console.log('decoded:', decoded);
+        return decoded;
+        
     } catch (error) {
         console.log('jwt', error);
         return null;
