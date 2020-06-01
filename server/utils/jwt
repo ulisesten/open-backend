@@ -18,7 +18,7 @@ function decodeToken(token){
     console.log('secret',secret);
     
     try {
-        return jwt.verify( token );
+        return jwt.verify( token, secret );
     } catch (error) {
         console.log('jwt', error);
         return null;
