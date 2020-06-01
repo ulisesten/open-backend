@@ -191,8 +191,9 @@ function validateSession(req, res, ops){
 
         body = parser.parseJson(body);
 
-        console.log( body.token );
-        var isAuth = jwt.decodeToken(body.token)
+        console.log( 'log',body.token );
+
+        var isAuth = jwt.decodeToken(body.token);
 
         if( isAuth !== null && isAuth !== undefined) {
 
