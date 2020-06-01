@@ -13,6 +13,11 @@ function post(req, res, ops){
         auth.mobileRegister( req, res, ops );
 
     else
+    if( req.url === '/verify_session' ) {
+        console.log('[POST] verify_session');
+    }
+
+    else
     if ( req.url === '/searchProduct' )
         products.searchProduct( req, res, ops );
 
