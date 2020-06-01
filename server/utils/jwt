@@ -3,8 +3,8 @@
 //var jwt = require('jwt-simple');
 var jwt = require('jsonwebtoken');
 
-var secret = process.env.SECRET || 'skghksdngjhkjjk34wdfn894jk3';
-    secret = secret.replace(/\\n/g, '\n');
+var secret = process.env.SECRET_SIMPLE || 'skghksdngjhkjjk34wdfn894jk3';
+
 
 function createJsonWebToken(data){
     //return jwt.encode(data, secret);
