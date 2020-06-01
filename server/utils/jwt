@@ -4,6 +4,7 @@
 var jwt = require('jsonwebtoken');
 
 var secret = process.env.SECRET || 'skghksdngjhkjjk34wdfn894jk3';
+    secret = secret.replace(/\\n/g, '\n');
 
 function createJsonWebToken(data){
     //return jwt.encode(data, secret);
