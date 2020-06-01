@@ -199,7 +199,7 @@ function validateSession(req, res, ops){
 
         if( isAuth !== null && isAuth !== undefined) {
 
-            console.log('auth/validateSession: Valid credentials', doc.id);
+            console.log('auth/validateSession: Valid credentials', isAuth.id);
             util.jsonResponse(res, 200, { id: isAuth.id });
 
         } else {
