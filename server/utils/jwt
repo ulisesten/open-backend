@@ -15,11 +15,12 @@ function decodeToken(token){
 
     //return jwt.decode(token, secret);
     
-    //try {
+    try {
         return jwt.verify( token, secret );
-    //} catch (error) {
-      //  return null;
-    //}
+    } catch (error) {
+        console.log('jwt', error);
+        return null;
+    }
 
 }
 
