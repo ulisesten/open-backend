@@ -1,0 +1,36 @@
+cache:
+  paths:
+  - node_modules/
+
+stages:
+  - test
+  - build
+
+unit_test:
+  image: node
+  stage: test
+  variables:
+    NODE_ENV: test
+  before_script:
+  - apt-get update -qq && apt-get install -y -qq nodejs
+  - node -v
+
+  script:
+    - npm start
+
+
+build:
+  image: docker:latest
+  stage: build
+  services:
+    - docker:dind
+  variables:
+    DOCKER_DRIVER: overlay
+    CI_REGISTRY: registry.gitlab.com
+    CI_REGISTRY_IMAGE: registry.gitlab.com/PROJECT_NAME
+  script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+    - docker build --pull -t "${CI_REGISTRY_IMAGE}:latest" .
+    - docker push "${CI_REGISTRY_IMAGE}:latest"
+  only:
+    - master

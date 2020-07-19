@@ -6,7 +6,9 @@ if( mId === undefined || mUsername === undefined)
     window.location.href = '/ingresar';
 else {
 
-var socket = io.connect()
+//var socket = io.connect()
+
+var socket = io.connect(window.location.origin, { query: `id=${mId}` })
 
 socket.on('message', (data) => {
     console.log(data);
@@ -34,8 +36,9 @@ sendMessage.addEventListener('click', () => {
     var messageObject = {
         username: mUsername,
         message: messageContent,
-        sender: mId
+        from_id: mId
     }
+
     socket.emit('message', messageObject );
 });
 

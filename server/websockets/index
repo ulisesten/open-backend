@@ -6,8 +6,9 @@ var admin = require("firebase-admin");
 //var serviceAccount = process.env.GOOGLE_APPLICATION_CREDENTIALS || require("../keys/mlvalles-key.json");
 
 //console.log('key', serviceAccount);
-var private_key = process.env.FIREBASE_PRIVATE_KEY
+var private_key = process.env.FIREBASE_PRIVATE_KEY || null
 
+if(private_key !== null)
 admin.initializeApp({
     credential: admin.credential.cert({
         "private_key": private_key.replace(/\\n/g, '\n'),
@@ -53,7 +54,7 @@ function websockets(io){
                 //socket.emit('receiverNotConnected', {'to_id': data.to_id, 'sender_name': data.sender_name, 'product_id': data.product_id })
 
                 //var registrationToken = 'craSzMH-4Ew:APA91bFBunT61dykQ4RnsTDy-kSvspdSl1PpJFWogslmj4R9wVDfG9QLdFdTZmNf_VTELatUUmCEv92p2nATpUPqH9JCxa9qxr5CjUNy7V6w1ZNNcBWR3ddvkAjv-x-m4MqioZXvyYAT';
-                if( data.to_device_id !== undefined && data.to_device_id !== "")
+                if( data.to_device_id !== undefined && data.to_device_id !== "" && private_key !== null)
                     sendFCMMessage(data.to_device_id, data.sender_name);
 
             } else {

@@ -10,13 +10,14 @@ function loadJS( path, req, res ){
 
         var modified = Date.parse(stats.mtime);
         var clienttime = Date.parse(req.headers['if-modified-since']);
-        //console.log('modified', modified);
-        //console.log( 'clienttime' , clienttime );
 
         if( modified > clienttime || !clienttime ){
 
             //console.log('script modified');
-            var newheaders = { 'Content-Type': 'text/javascript; ', 'Last-Modified': stats.mtime + ';', 'cache-control': 'max-age=0, private, must-revalidate;' };
+            var newheaders = { 'Content-Type': 'text/javascript; '
+                             , 'Last-Modified': stats.mtime + ';'
+                             , 'cache-control': 'max-age=0, private, must-revalidate;'
+                             };
 
             fs.readFile(path, function(err, data){
                 if(!err){
@@ -30,10 +31,12 @@ function loadJS( path, req, res ){
             })
 
         } else {
+        
             //console.log('script NOT modified');
             var headers = { 'Content-Type': 'text/javascript; charset=utf-8;' };
             res.writeHead(304, headers)
             res.end();
+            
         }
 
     })

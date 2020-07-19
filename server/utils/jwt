@@ -3,26 +3,26 @@
 //var jwt = require('jwt-simple');
 var jwt = require('jsonwebtoken');
 
-var secret = process.env.SECRET_SIMPLE || 'skghksdngjhkjjk34wdfn894jk3';
+var secret = process.env.SECRET || 'skghksdngjhkjjk34wdfn894jk3';
 
 
 function createJsonWebToken(data){
     //return jwt.encode(data, secret);
     
     var token = jwt.sign( data, secret );
-    console.log('token:',token);
+    //console.log('token:',token);
     return token
 }
 
 function decodeToken(token){
 
     //return jwt.decode(token, secret);
-    console.log('secret',secret);
+    //console.log('secret',secret);
     
     try {
 
         var decoded = jwt.verify( token , secret );
-        console.log('decoded:', decoded);
+        //console.log('decoded:', decoded);
         return decoded;
         
     } catch (error) {
