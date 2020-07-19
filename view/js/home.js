@@ -14,7 +14,7 @@ socket.on('message', (data) => {
     console.log(data);
     console.log( mUsername, mId );
 
-    if( data.sender === mId)
+    if( data.from_id === mId)
         messages.append(newSenderMessage(data));
     else
         messages.append(newIncomingMessage(data));
