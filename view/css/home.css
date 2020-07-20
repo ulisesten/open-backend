@@ -260,6 +260,11 @@ a {
     border-radius: 4px;
   }
 
+  .img-container {
+    display: grid;
+    place-items: center;
+  }
+
   .cardImage {
       width: 100%;
   }
