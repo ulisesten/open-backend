@@ -262,8 +262,8 @@ a {
   }
 
   .img-container {
-    display: grid;
-    height: 300px;
+    display: flex;
+    max-height: 300px;
   }
 
   .cardImage {
