@@ -190,7 +190,7 @@ a {
 
 /************* GRID **************/
 /*corto*/
-@media only screen and (min-width: 368px) {
+/*@media only screen and (min-width: 368px) {
     .pos {
         width: 100%;
     }
@@ -203,7 +203,7 @@ a {
     }
 }
 /*Mediano*/
-@media only screen and (min-width: 568px) {
+/*@media only screen and (min-width: 568px) {
     .pos {
         width: 100%;
     }
@@ -216,7 +216,7 @@ a {
     }
 }
 /*Largo*/
-@media only screen and (min-width: 768px) {
+/*@media only screen and (min-width: 768px) {
     .pos {
         width: 75%;
     }
@@ -228,7 +228,7 @@ a {
         height: 100%;
     }
 }
-/*Extra largo*/
+/*Extra largo*//*
 @media only screen and (min-width: 968px) {
     .pos {
         width:70%;
@@ -240,7 +240,7 @@ a {
         left: 15%;
         height: 100%;
     }
-}
+}*/
 
 /**Products*/
 #products {
