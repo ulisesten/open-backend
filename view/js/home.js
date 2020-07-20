@@ -12,6 +12,44 @@ var queryHeaders = {
     'Content-Type': 'application/json; charset=utf-8'
 }
 
+/**GET functions */
+function getData(url){
+
+    fetch( url, {
+        credentials: 'include',
+        headers: queryHeaders,
+        method: 'GET'
+    }).then( res=> {
+        if( !res.ok ){
+            console.log('getProduct: Error');
+            return;
+        }
+
+        return res.json();
+
+    }).then( res=> {
+        if( res !== null ){
+            console.log( res );
+            res.forEach( el=> {
+                var card = productCard(el);
+                el('messages').append( card );
+            })
+        }
+    });
+
+}
+
+var imageStorageUrl = "https://res.cloudinary.com/djlzeapiz/image/upload/q_20/v1573315852/";
+
+function productCard(product){
+    return `<div class="card">
+        <img class="cardImage" src=${imageStorageUrl + product.image_array[0]} alt="imagen del producto" >
+        <h1>${product.product_name}</h1>
+        <p class="price">${product.price}</p>
+        <p>${product.description}</p>
+    </div>`;
+}
+
 
 
 /**User Info */
@@ -112,32 +150,6 @@ function newIncomingMessage(data){
     div.append(dateSpan)
 
     return div;
-}
-
-
-
-
-/**GET functions */
-function getData(url){
-
-    fetch( url, {
-        credentials: 'include',
-        headers: queryHeaders,
-        method: 'GET'
-    }).then( res=> {
-        if( !res.ok ){
-            console.log('getProduct: Error');
-            return;
-        }
-
-        return res.json();
-
-    }).then( res=> {
-        if( res !== null ){
-            console.log( res );
-        }
-    });
-
 }
 
 
