@@ -262,8 +262,7 @@ a {
   }
 
   .img-container {
-    display: flex;
-    max-height: 300px;
+    height: 300px;
   }
 
   .cardImage {
