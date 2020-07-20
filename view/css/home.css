@@ -244,10 +244,10 @@ a {
 
 /**Products*/
 #products {
-    margin: 30px;
+    margin: 50px;
     width: 100%;
     display: inline-flex;
-    place-items: center;
+    align-items: center;
 }
 
 
