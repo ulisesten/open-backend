@@ -8,14 +8,15 @@ function newEl(el){
     return document.createElement(el);
 }
 
+var queryHeaders = {
+    'Content-Type': 'application/json; charset=utf-8'
+}
+
 
 
 /**User Info */
 var mUsername = localStorage.username;
 var mId = localStorage.id;
-
-
-
 
 if( mId === undefined || mUsername === undefined)
     window.location.href = '/ingresar';
@@ -115,5 +116,34 @@ function newIncomingMessage(data){
 
 
 
+
+/**GET functions */
+function getData(url){
+
+    fetch( url, {
+        credentials: 'include',
+        headers: queryHeaders,
+        method: 'GET'
+    }).then( res=> {
+        if( !res.ok ){
+            console.log('getProduct: Error');
+            return;
+        }
+
+        return res.json();
+
+    }).then( res=> {
+        if( res !== null ){
+            console.log( res );
+        }
+    });
+
+}
+
+
+
+
+/**Getting products */
+getData('getProducts');
 
 }/**else end */
