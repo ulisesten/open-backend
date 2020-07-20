@@ -1,13 +1,30 @@
 
+/**@Utils */
+function el(id){
+    return document.getElementById(id);
+}
+
+function newEl(el){
+    return document.createElement(el);
+}
+
+
+
+/**User Info */
 var mUsername = localStorage.username;
 var mId = localStorage.id;
+
+
+
 
 if( mId === undefined || mUsername === undefined)
     window.location.href = '/ingresar';
 else {
 
-//var socket = io.connect()
 
+
+
+//var socket = io.connect()
 var socket = io.connect(window.location.origin, { query: `id=${mId}` })
 
 socket.on('message', (data) => {
@@ -23,8 +40,10 @@ socket.on('message', (data) => {
 })
 
 
-/**@Send_message */
 
+
+
+/**@Send_message */
 var sendMessage = el('message-button');
 var messages = el('messages');
 
@@ -41,6 +60,10 @@ sendMessage.addEventListener('click', () => {
 
     socket.emit('message', messageObject );
 });
+
+
+
+
 
 function newSenderMessage(data){
     var div = newEl('div');
@@ -59,6 +82,10 @@ function newSenderMessage(data){
 
     return div;
 }
+
+
+
+
 
 function newIncomingMessage(data){
     var div = newEl('div');
@@ -88,13 +115,5 @@ function newIncomingMessage(data){
 
 
 
-/**@Utils */
-function el(id){
-    return document.getElementById(id);
-}
 
-function newEl(el){
-    return document.createElement(el);
-}
-
-}
+}/**else end */
