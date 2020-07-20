@@ -262,12 +262,9 @@ a {
   }
 
   .img-container {
-    display: flex;
+    display: grid;
+    place-items: center;
     max-height: 300px;
-  }
-
-  .cardImage {
-      width: 100%;
   }
   
   .price {
