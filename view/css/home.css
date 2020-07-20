@@ -246,6 +246,7 @@ a {
 #products {
     margin: 5px;
     width: 100%;
+    display: inline-flex;
     float: left;
 }
 
