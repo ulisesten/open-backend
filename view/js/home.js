@@ -32,7 +32,7 @@ function getData(url){
             console.log( res );
             res.forEach( el=> {
                 var card = productCard(el);
-                getEl('messages').append( card );
+                getEl('messages').innerHTML += card;
             })
         }
     });
@@ -42,16 +42,12 @@ function getData(url){
 var imageStorageUrl = "https://res.cloudinary.com/djlzeapiz/image/upload/q_20/v1573315852/";
 
 function productCard(product){
-    var div = document.createElement('div');
-
-    div.setAttribute('class','card');
-    div.innerHTML = `
+    return `<div class="card">
         <img class="cardImage" src=${imageStorageUrl + product.image_array[0]} alt="imagen del producto" >
         <h1>${product.product_name}</h1>
         <p class="price">${product.price}</p>
-        <p>${product.description}</p>`;
-
-    return div;
+        <p>${product.description}</p>
+    </div>`;
 }
 
 
