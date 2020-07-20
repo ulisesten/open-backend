@@ -231,7 +231,7 @@ a {
 /*Extra largo*/
 @media only screen and (min-width: 968px) {
     .pos {
-        width:65%;
+        width:70%;
     }
 
     .main-p {
