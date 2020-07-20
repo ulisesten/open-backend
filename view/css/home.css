@@ -11,12 +11,10 @@ a {
 
 /**HEADER*/
 .header {
-
   position: fixed;
   width: 100%;
   padding: 0.5rem;
   z-index: 100;
-
 }
 
 .header-container {
@@ -247,7 +245,7 @@ a {
 #products {
     margin: 50px;
     width: 100%;
-    display: inline-flex;
+    display: inline-block;
     align-items: center;
 }
 
