@@ -242,6 +242,12 @@ a {
     }
 }
 
+/**Products*/
+#products {
+    width: 100%;
+    display: flex;
+}
+
 
 /**Product Card*/
 .card {
@@ -250,6 +256,7 @@ a {
     margin: auto;
     text-align: center;
     font-family: arial;
+    border-radius: 4px;
   }
 
   .cardImage {

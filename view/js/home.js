@@ -32,7 +32,7 @@ function getData(url){
             console.log( res );
             res.forEach( el=> {
                 var card = productCard(el);
-                getEl('messages').innerHTML += card;
+                getEl('products').innerHTML += card;
             })
         }
     });
@@ -45,7 +45,7 @@ function productCard(product){
     return `<div class="card">
         <img class="cardImage" src=${imageStorageUrl + product.image_array[0]} alt="imagen del producto" >
         <h1>${product.product_name}</h1>
-        <p class="price">${product.price}</p>
+        <p class="price">$ ${product.price}</p>
         <p>${product.description}</p>
     </div>`;
 }
