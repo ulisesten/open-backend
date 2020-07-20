@@ -244,7 +244,7 @@ a {
 
 /**Products*/
 #products {
-    margin: 15px;
+    margin: 5px;
     width: 100%;
     display: grid;
     place-items: center;
@@ -263,7 +263,6 @@ a {
 
   .img-container {
     display: grid;
-    place-items: center;
     height: 300px;
   }
 
