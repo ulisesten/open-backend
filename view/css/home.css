@@ -246,6 +246,7 @@ a {
 #products {
     margin: 5px;
     width: 100%;
+    float: left;
 }
 
 
@@ -261,7 +262,7 @@ a {
 
   .img-container {
     display: grid;
-    float: left;
+    place-items: center;
     height: 300px;
   }
 
