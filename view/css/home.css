@@ -245,8 +245,7 @@ a {
 #products {
     margin: 50px;
     width: 100%;
-    display: inline-block;
-    align-items: center;
+    float: left;
 }
 
 
