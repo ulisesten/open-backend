@@ -247,7 +247,7 @@ a {
     margin: 15px;
     width: 100%;
     display: inline-flex;
-    float: left;
+    place-items: center;
 }
 
 
