@@ -1,6 +1,6 @@
 
 /**@Utils */
-function el(id){
+function getEl(id){
     return document.getElementById(id);
 }
 
@@ -32,7 +32,7 @@ function getData(url){
             console.log( res );
             res.forEach( el=> {
                 var card = productCard(el);
-                el('messages').append( card );
+                getEl('messages').append( card );
             })
         }
     });
