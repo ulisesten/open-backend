@@ -144,6 +144,6 @@ function getData(url){
 
 
 /**Getting products */
-getData('getProducts');
+getData('/getProducts');
 
 }/**else end */
