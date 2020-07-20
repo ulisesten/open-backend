@@ -43,12 +43,13 @@ var imageStorageUrl = "https://res.cloudinary.com/djlzeapiz/image/upload/q_20/v1
 
 function productCard(product){
     var div = document.createElement('div');
-    div.innerHTML = `<div class="card">
+
+    div.setAttribute('class','card');
+    div.innerHTML = `
         <img class="cardImage" src=${imageStorageUrl + product.image_array[0]} alt="imagen del producto" >
         <h1>${product.product_name}</h1>
         <p class="price">${product.price}</p>
-        <p>${product.description}</p>
-    </div>`;
+        <p>${product.description}</p>`;
 
     return div;
 }
