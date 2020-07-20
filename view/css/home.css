@@ -260,8 +260,8 @@ a {
   }
 
   .img-container {
-      display: grid;
-      place-items: center;
+    display: grid;
+    float: left;
     height: 300px;
   }
 
