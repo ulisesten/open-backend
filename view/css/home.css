@@ -263,6 +263,8 @@ a {
   .img-container {
     display: grid;
     place-items: center;
+    height: 50%;
+    width: 100%;
   }
 
   .cardImage {
