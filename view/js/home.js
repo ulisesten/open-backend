@@ -64,7 +64,7 @@ else {
 
 
 //var socket = io.connect()
-var socket = io.connect(window.location.origin, { query: `id=${mId}` })
+/*var socket = io.connect(window.location.origin, { query: `id=${mId}` })
 
 socket.on('message', (data) => {
     console.log(data);
@@ -82,7 +82,7 @@ socket.on('message', (data) => {
 
 
 
-/**@Send_message */
+
 var sendMessage = getEl('message-button');
 var messages = getEl('messages');
 
@@ -150,7 +150,7 @@ function newIncomingMessage(data){
     div.append(dateSpan)
 
     return div;
-}
+}*/
 
 
 
