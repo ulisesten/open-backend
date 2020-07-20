@@ -83,11 +83,11 @@ socket.on('message', (data) => {
 
 
 /**@Send_message */
-var sendMessage = el('message-button');
-var messages = el('messages');
+var sendMessage = getEl('message-button');
+var messages = getEl('messages');
 
 sendMessage.addEventListener('click', () => {
-    var messageContent = el('message-input').value;
+    var messageContent = getEl('message-input').value;
     el('message-input').value = '';
 
     //messages.append(newSenderMessage(messageContent));
