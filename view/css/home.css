@@ -341,6 +341,7 @@ a {
   #view-pager {
       display: grid;
       place-items: center;
+      grid-template-columns: repeat(2, 1fr);
       position: relative;
       top: 70px;
       width: 100%;
