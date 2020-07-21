@@ -13,7 +13,7 @@ function onLogin(res, err, auth, data){
     if(auth === true) {
 
         /** AUTHORIZED */
-        console.log('mobileLogin usuario AUTHORIZED')
+        console.log('Login usuario AUTHORIZED')
 
         var token = jwt.createJsonWebToken(data);
         util.jsonResponse(res, 200, { id: data.id, device_id: data.device_id, username: data.username, founder: data.founder, credentials: token});
@@ -21,7 +21,7 @@ function onLogin(res, err, auth, data){
     } else {
 
         /** NOT AUTHORIZED! */
-        console.log('[BAD!]mobileLogin usuario NOT authorized!',err)
+        console.log('[BAD!]Login usuario NOT authorized!',err)
         util.jsonBadResponse(res, 403);
 
     }
@@ -33,12 +33,12 @@ function onRegister(res, err, data){
 
     if (err) {
         /** Saving Error */
-        console.log('[ERROR!]mobileRegister Error al intentar guardar',err);
+        console.log('[ERROR!]Register Error al intentar guardar',err);
         util.jsonBadResponse(res, 403);
         
     } else {
         /** Saved successfuly */
-        console.log('mobileRegister El siguiente usuario se guard_o correctamente:', data.username);
+        console.log('Register El siguiente usuario se guard_o correctamente:', data.username);
         var token = jwt.createJsonWebToken(data);
         util.jsonResponse(res, 200, {id: data.id, device_id: data.device_id, username: data.username, credentials: token });
 
@@ -67,7 +67,7 @@ function mobileLogin(req, res, ops){
                     if(!doc){
 
                         /** Usuario NO existe */
-                        console.log('[BAD!]mobileLogin usuario NO existe',err)
+                        console.log('[BAD!]Login usuario NO existe',err)
                         util.jsonBadResponse(res, 401);
                             
                     } else {
@@ -93,7 +93,7 @@ function mobileLogin(req, res, ops){
 }
 
 function mobileRegister(req, res, ops){
-    console.log('Post: mobileRegister');
+    console.log('Post: Register');
     var body = '';
 
     /** handle body */
@@ -116,7 +116,7 @@ function mobileRegister(req, res, ops){
                     /** The info is available to storage */
                     enc.registerEncryption( body.password , (err, hash) => {
 
-                        console.log('mobileRegister:', 'info is available');
+                        console.log('Register:', 'info is available');
                         var userInfo = util.createDatabaseUserInfoObject(req, body, hash);
                         
                         var userModel = new model.User(userInfo);
@@ -124,7 +124,7 @@ function mobileRegister(req, res, ops){
                         userModel.save((err, data) => {
                             
                             /** Handle rest of the response */
-                            onRegister(res, err, data);
+                            onRegister(res, err, userInfo);
                             
                         });
 
@@ -133,7 +133,7 @@ function mobileRegister(req, res, ops){
                 } else {
 
                     /**The info is not available */
-                    console.log('[BAD!]mobileRegister:','Info not available. El usuario ya existe');
+                    console.log('[BAD!]Register:','Info not available. El usuario ya existe');
                     util.jsonBadResponse(res, 401);
 
                 }

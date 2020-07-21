@@ -13,7 +13,7 @@ var queryHeaders = {
 }
 
 /**GET functions */
-function getData(url){
+function getData(url, callback){
 
     fetch( url, {
         credentials: 'include',
@@ -29,11 +29,7 @@ function getData(url){
 
     }).then( res=> {
         if( res !== null ){
-            console.log( res );
-            res.forEach( el=> {
-                var card = productCard(el);
-                getEl('products').innerHTML += card;
-            })
+            callback(res)
         }
     });
 
@@ -44,12 +40,34 @@ var imageStorageUrl = "https://res.cloudinary.com/djlzeapiz/image/upload/q_20/v1
 function productCard(product){
     return `<div class="card">
         <div class="img-container">
-        <img class="cardImage" src=${imageStorageUrl + product.image_array[0]} alt="imagen del producto" >
+            <img class="cardImage" src=${imageStorageUrl + product.image_array[0]} alt="imagen del producto" >
         </div>
-        <h1>${product.product_name}</h1>
-        <p class="price">$ ${product.price}</p>
-        <p>${product.description}</p>
+        <div class="product-info-container">
+            <h1>${product.product_name}</h1>
+            <p class="price">$${product.price}</p>
+            <p>${product.description}</p>
+        </div>
     </div>`;
+}
+
+function productCallback(res){
+    console.log( res );
+    res.forEach( el=> {
+        var card = productCard(el);
+        getEl('products').innerHTML += card;
+    })
+}
+
+function coverCard(res){
+    return `<img class="page" src="${imageStorageUrl + res.cover_id}">`
+}
+
+function coverCallback(res){
+    console.log('covers',res);
+    res.forEach( el=> {
+        var page = coverCard(el);
+        getEl('view-pager').innerHTML += page;
+    })
 }
 
 
@@ -156,8 +174,9 @@ function newIncomingMessage(data){
 
 
 
-
+/**Getting covers */
+getData( '/getCovers', coverCallback ); 
 /**Getting products */
-getData('/getProducts');
+getData( '/getProducts', productCallback) ;
 
 }/**else end */

@@ -9,17 +9,17 @@ function static( req, res ){
     
     if( req.url === '/' ) {
 
-        var parsedCookie = cookie.parse(String(req.headers.cookie));
+        /*var parsedCookie = cookie.parse(String(req.headers.cookie));
         
         if( parsedCookie.token !== undefined)
             var decodedToken = jwt.decodeToken(parsedCookie.token)
         if( decodedToken )
-            load.loadHTML( './view/html/home.html', req, res );
         else{
             res.writeHead(302, {'Location': '/ingresar'});
             res.end();
         } 
-        //res.end();
+        //res.end();*/
+        load.loadHTML( './view/html/home.html', req, res );
         use = true;
 
     } else if( req.url === '/ingresar'){

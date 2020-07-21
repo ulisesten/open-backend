@@ -10,23 +10,35 @@
 
 
 <link rel="stylesheet", href="css/home.css"></link>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 </head>
 <body>
     <header class="header">
+        <span class="material-icons menu">menu</span>
         <div class="header-container logo-nav-container">
-            <h1 class="logo"> ML Ciudad Valles </h1>
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="Buscar en ML Ciudad Valles"/>
+                <span class="material-icons search-button">search</span>
+            </div>
             <nav class="navigation">
                 <ul>
-                    <li><span class="clickable">Mi actividad</span></li>
-                    <li><span class="clickable">Mi cuenta</span></li>
-                    <li><span id="salir" class="clickable">Salir</span></li>
+                    <li><span class="material-icons clickable" title="Notificaciones">notifications</span></li>
+                    <li><span class="material-icons clickable" title="Mi Cuenta">account_circle</span></li>
+                    <li><span id="salir" class="material-icons clickable" title="Salir">exit_to_app</span></li>
                 </ul>
             </nav>
         </div>
     </header>
 
+    <div id="view-pager">
+
+    </div>
     <main class="main-w main-p">
-        <div id="products"></div>
+        <div class="p-container">    
+            <h3 class="text1">Los últimos productos</h3>
+            <div id="products"></div>
+        </div>
         <!--<div class="chatbox pos border">
 
             
@@ -42,6 +54,10 @@
     <section class="r-section r-section-p r-section-w">
       
     </section>
+
+    <div class="new-product" title="Publicar un producto">
+        <span class="material-icons">add</span>
+    </div>
 
     <script src="js/ws.js"></script>
     <script src="js/home.js"></script>
