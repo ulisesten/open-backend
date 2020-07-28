@@ -43,9 +43,9 @@ function productCard(product){
             <img class="cardImage" src=${imageStorageUrl + product.image_array[0]} alt="imagen del producto" >
         </div>
         <div class="product-info-container">
-            <h1>${product.product_name}</h1>
+            <h2 class="product-name">${product.product_name}</h2>
             <p class="price">$${product.price}</p>
-            <p>${product.description}</p>
+            <!-- <p>${product.description}</p> -->
         </div>
     </div>`;
 }
@@ -58,18 +58,36 @@ function productCallback(res){
     })
 }
 
-function coverCard(res){
-    return `<img class="page" src="${imageStorageUrl + res.cover_id}">`
+function coverCard(res,index){
+    return `<img id="${index}" class="page" src="${imageStorageUrl + res.cover_id}">`
 }
 
 function coverCallback(res){
     console.log('covers',res);
+    var index = 1;
     res.forEach( el=> {
-        var page = coverCard(el);
+        var page = coverCard( el, index++ );
         getEl('view-pager').innerHTML += page;
     })
 }
 
+
+/**Side Bar */
+var isToggled = true;
+var toggleMenu = getEl('toggle-menu');
+var sideBarMenu = getEl('sidebar-menu');
+
+toggleMenu.addEventListener('click', ()=>{
+
+    if(isToggled){
+        sideBarMenu.style.transform = 'translateX(0%)';
+    } else {
+        sideBarMenu.style.transform = 'translateX(-100%)';
+    }
+
+    isToggled = !isToggled;
+
+});
 
 
 /**User Info */
@@ -79,6 +97,15 @@ var mId = localStorage.id;
 if( mId === undefined || mUsername === undefined)
     window.location.href = '/ingresar';
 else {
+
+
+/**Getting covers */
+getData( '/getCovers', coverCallback ); 
+/**Getting products */
+getData( '/getProducts', productCallback) ;
+
+}/**else end */
+
 
 
 
@@ -171,12 +198,3 @@ function newIncomingMessage(data){
 
     return div;
 }*/
-
-
-
-/**Getting covers */
-getData( '/getCovers', coverCallback ); 
-/**Getting products */
-getData( '/getProducts', productCallback) ;
-
-}/**else end */

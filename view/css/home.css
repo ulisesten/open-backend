@@ -15,7 +15,7 @@ a {
     color: #FFF;
     position: fixed;
     width: 100%;
-    height: 60px;
+    height: 50px;
     padding: 0.5rem;
     z-index: 100;
     display: inline-flex;
@@ -62,23 +62,17 @@ a {
         display: inline-block;
     }
 
-        .navigation ul li span,a {
+        .navigation ul li span {
             display: block;
             padding: 8px;
             transition: all 0.4s linear;
             border-radius: 3px;
             cursor: pointer;
         }
-            .navigation ul li span:hover,a:hover {
+            .navigation ul li span:hover {
                 background-color: black;
                 color: white;
             }
-
-/**Main Stuff */
-.main-w {
-    width: 100%;
-    padding-top: 65px; 
-}
 
 
 
@@ -260,14 +254,22 @@ a {
     }
 }*/
 
+/**Main Stuff */
 .main-w {
+    width: 100%;
+    margin-top: 65px;
+    margin-bottom: 10px;
     display: grid;
     place-items: center;
 }
 
 .p-container {
-    width: 90%;
+    width: 85%;
 }
+
+
+
+
 
 /**Products*/
 #products {
@@ -281,9 +283,10 @@ a {
 .card {
     box-shadow: 0 4px 8px 0 rgba(117, 116, 116, 0.2);
     background-color: #FFF;
+    color: #686767;
     max-width: 200px;
     min-height: 270px;
-    margin: 10px;
+    margin: 10px 5px 5px 5px;
     text-align: center;
     border-radius: 5px;
     cursor: pointer;
@@ -293,6 +296,7 @@ a {
       box-shadow: 0 6px 10px 4px rgb(44, 42, 42);
       background-color: #4285f4;
       color: #FFF;
+      margin: 5px;
       transition: linear 0.15s;
   }
 
@@ -313,7 +317,7 @@ a {
     place-items: center;
     height: 100px;
   }
-  
+
   .price {
     font-size: 22px;
   }
@@ -341,9 +345,8 @@ a {
   #view-pager {
       display: grid;
       place-items: center;
-      grid-template-columns: repeat(2, 1fr);
       position: relative;
-      top: 70px;
+      top: 60px;
       width: 100%;
       height: 300px;
   }
@@ -353,6 +356,8 @@ a {
       border-radius: 6px;
       cursor: pointer;
   }
+
+
 
 
   /**New Product Button*/
@@ -383,3 +388,46 @@ a {
       margin: 10px;
       color: #686767;
   }
+
+
+
+
+  /**Side Bar*/
+
+  .side-bar {
+      position: fixed;
+      top: 0px;
+      left: 0px;
+      width: 20%;
+      height: 100%;
+      background-color: blanchedalmond;
+      transform: translateX(-100%);
+      transition: transform 0.3s;
+  }
+
+  .side-bar .content {
+      position: relative;
+      top: 50px;
+      padding-top: 10px;
+      width: 100%;
+      min-height: 100px;
+  }
+
+  .side-bar .content .a-button {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      height: 50px;
+  }
+
+  .side-bar .content .a-button:hover {
+    background-color: black;
+    color: blanchedalmond;
+}
+
+  .side-bar .content .a-button .b-text {
+      text-align: center;
+      margin: 5px;
+      position: relative;
+      top: 2.5px;
+   }
