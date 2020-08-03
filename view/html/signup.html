@@ -10,42 +10,43 @@
 
 
 <link href="https://fonts.googleapis.com/css?family=Rajdhani&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet", href="css/home.css"></link>
 </head>
 <body>
     <header class="header">
         <div class="header-container logo-nav-container">
-            <h1 class="logo"> API </h1>
+            <h1>API</h1>
             <nav class="navigation">
                 <ul>
-                    <li><a href="/ingresar" class="clickable">Iniciar Sesión</a></li>
-                    
-                    <li><span id="salir" class="clickable">Salir</span></li>
+                    <li><a href="/ingresar" class="material-icons clickable" title="Ingresar">account_circle</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <main class="main-w main-p pos">
-        
-        <div>
-            <h1 class="welcome">Gracias por registrarte con nosotros</h1>
-            <div class="formulary">
-                <span>Nombre de Usuario:</span>
+    <div class="header-block"></div>
+
+    <main class="main">
+        <div class="form-decoration"></div>  
+        <form class="form">
+            <h1 class="welcome">Registro</h1>
+            <div class="field-container">
+                <span class="field">Nombre de Usuario:</span>
                 <br>
                 <input id="username-register" class="field border" type="text"></input>
                 <br>
-                <span>Correo Electrónico:</span>
+                <span class="field">Correo Electrónico:</span>
                 <br>
                 <input id="email-register" class="field border" type="text"></input>
                 <br>
-                <span>Contraseña:</span>
+                <span class="field">Contraseña:</span>
                 <br>
                 <input id="password-register" class="field border" type="password"></input>
                 <br>
-                <button id="signup-button" class="border field blue">Registrarme</button>
+                <button id="signup-button" class="button">Registrarme</button>
             </div>
-        </div>
+        </form>
         
     </main>
 

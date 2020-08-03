@@ -1,25 +1,25 @@
 #!/usr/bin/env node
 
 var load = require('./load');
-var cookie = require('cookie');
-var jwt = require('../utils/jwt');
+var auth = require('../utils/access');
+var responses = require('../utils/responses')
 
 function static( req, res ){
     var use = false;
     
     if( req.url === '/' ) {
-
-        /*var parsedCookie = cookie.parse(String(req.headers.cookie));
         
-        if( parsedCookie.token !== undefined)
-            var decodedToken = jwt.decodeToken(parsedCookie.token)
-        if( decodedToken )
-        else{
-            res.writeHead(302, {'Location': '/ingresar'});
-            res.end();
-        } 
-        //res.end();*/
         load.loadHTML( './view/html/home.html', req, res );
+        use = true;
+
+    } else if(req.url === '/new-product'){
+
+        if( auth.checkForAccess(req.headers.cookie) ){
+            load.loadHTML( './view/html/new_product.html', req, res );
+        } else {
+            responses.redirect(res, 302, '/ingresar' )
+        }
+        
         use = true;
 
     } else if( req.url === '/ingresar'){
@@ -33,6 +33,11 @@ function static( req, res ){
         use = true;
 
     }
+
+
+
+
+
     /**@Scripts */
     else if( req.url === '/js/home.js') {
 
@@ -49,17 +54,18 @@ function static( req, res ){
         use = true;
     }
 
+
+
+
+    
+
     /**@Styles */
     else if( req.url === '/css/home.css' ) {
 
         load.loadCSS( './view/css/home.css', req, res );
         use = true;
 
-    }/* else {
-
-        res.end();
-
-    }*/
+    }
 
     return use;
 

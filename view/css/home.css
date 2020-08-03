@@ -2,7 +2,7 @@
 
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: #ebebeb;
+  background-color: #ffe9e9e9;
 }
 
 a {
@@ -62,26 +62,22 @@ a {
         display: inline-block;
     }
 
-        .navigation ul li span {
+        .navigation ul li a {
+            color: #fff;
             display: block;
             padding: 8px;
-            transition: all 0.4s linear;
+            transition: all 0.2s linear;
             border-radius: 3px;
             cursor: pointer;
         }
-            .navigation ul li span:hover {
+            .navigation ul li a:hover {
                 background-color: black;
                 color: white;
             }
 
 
-
-.welcome {
-    text-align: center;
-    margin: 20px;
-    padding: 100px 20px 20px 20px;
-    font-size: 3em;
-    font-family: 'Rajdhani', sans-serif;
+#toggled-menu {
+    display: none;
 }
 
 /**Main Image*/
@@ -91,13 +87,6 @@ a {
     position: fixed;
     height: 90%;
     bottom: 0px;
-}
-
-.border {
-    border-style: solid;
-    border-width: 1px;
-    border-color: black;
-    border-radius: 3px;
 }
 
 #message-input {
@@ -182,24 +171,6 @@ a {
 }
 
 
-
-/**Utils*/
-
-.field {
-    padding: 5px;
-    margin: 5px;
-}
-
-.formulary {
-    padding: 20px;
-    text-align: center;
-}
-
-.blue {
-    color: white;
-    background-color: #3c6cd3;
-}
-
 /************* GRID **************/
 /*corto*/
 /*@media only screen and (min-width: 368px) {
@@ -267,8 +238,75 @@ a {
     width: 85%;
 }
 
+/**Main*/
+.main {
+    display: grid;
+    place-items: center;
+    margin: 50px;
+}
 
+/**Form*/
 
+.form-decoration {
+    width: 32%;
+    height: 12px;
+    background-color: #fff;
+    border-radius: 5px 5px 0 0;
+    border: solid 1px #c4c1c1;
+    border-bottom: none;
+}
+
+.form {
+    background-color: #fff;
+    width: 35%;
+    display: grid;
+    place-items: center;
+    border: solid 1px #c4c1c1;
+    border-radius: 5px;
+}
+
+.field-container {
+    display: grid;
+    place-items: center;
+}
+
+.form .field {
+    padding: 10px;
+    margin: 10px;
+}
+
+.border {
+    border-bottom: solid 1px black;
+}
+
+.welcome {
+    text-align: center;
+    margin: 20px 0;
+    width: 100%;
+    border-left: solid 5px blue;
+    padding: 10px;
+    font-size: 2em;
+    font-family: 'RobotoDraft', sans-serif;
+}
+
+.welcome:hover {
+    color: crimson;
+    border-color: crimson;
+}
+
+.button {
+    color: #a7a4a4;
+    width: 100%;
+    padding: 15px;
+    margin: 15px;
+    border: solid 2px #a7a4a4;
+    border-radius: 5px;
+}
+
+.button:hover {
+    border: solid 2px #51a4ca;
+    color: #51a4ca;
+}
 
 
 /**Products*/
@@ -340,22 +378,22 @@ a {
 
 
 
+
   /**View Pager*/
+  .header-block { height: 50px;}
+
+  .pager-container{
+    width:70%;
+    overflow: hidden;
+    margin: 10px auto;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px 0 #38383833;
+}
 
   #view-pager {
-      display: grid;
-      place-items: center;
       position: relative;
-      top: 60px;
-      width: 100%;
-      height: 300px;
   }
 
-  .page {
-      height: 100%;
-      border-radius: 6px;
-      cursor: pointer;
-  }
 
 
 
@@ -375,7 +413,15 @@ a {
       place-items: center;
   }
 
-  .new-product:hover {
+  .new-product a {
+      display: grid;
+      place-items: center;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+  }
+
+  .new-product a:hover {
     box-shadow: 0 8px 12px 8px rgba(26, 25, 25, 0.2);
     background-color: #D81B60;
     color: #FFF;
@@ -393,14 +439,14 @@ a {
 
 
   /**Side Bar*/
-
   .side-bar {
       position: fixed;
       top: 0px;
       left: 0px;
       width: 20%;
       height: 100%;
-      background-color: blanchedalmond;
+      background-color: #FFF;
+      box-shadow: 0 8px 12px 8px rgba(117, 116, 116, 0.2);
       transform: translateX(-100%);
       transition: transform 0.3s;
   }
@@ -413,16 +459,18 @@ a {
       min-height: 100px;
   }
 
-  .side-bar .content .a-button {
+  .side-bar .content .a-button, .a-button:visited {
       display: flex;
       align-items: center;
       padding: 15px;
       height: 50px;
+      color: #292828;
   }
 
   .side-bar .content .a-button:hover {
-    background-color: black;
+    background-color: #292828;
     color: blanchedalmond;
+    transition: linear 0.2s;
 }
 
   .side-bar .content .a-button .b-text {

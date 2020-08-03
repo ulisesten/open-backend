@@ -16,9 +16,10 @@
 <body>
     <header class="header">
         <span id="toggle-menu" class="material-icons menu">menu</span>
+        <span id="toggled-menu" class="material-icons menu">menu_open</span>
         <div class="header-container logo-nav-container">
             <div class="search-bar">
-                <input type="text" class="search-input" placeholder="Buscar en ML Ciudad Valles"/>
+                <input type="text" class="search-input" placeholder="Buscar en ML Ciudad Valles.."/>
                 <span class="material-icons search-button">search</span>
             </div>
             <nav class="navigation">
@@ -31,9 +32,11 @@
         </div>
     </header>
 
-    <div id="view-pager">
-
+    <div class="header-block"></div>
+    <div class="pager-container"> 
+        <figure id="view-pager"></figure>
     </div>
+
     <main class="main-w main-p">
         <div class="p-container">    
             <h3 class="text1">Los últimos productos</h3>
@@ -51,21 +54,17 @@
         -->
     </main>
 
-    <section class="r-section r-section-p r-section-w">
-      
-    </section>
-
     <div class="new-product" title="Publicar un producto">
-        <span class="material-icons">add</span>
+        <a href="/new-product"><span class="material-icons">add</span></a>
     </div>
 
     <section id="sidebar-menu" class="side-bar">
         <div class="content">
                 <a href="#" class="a-button"><span class="material-icons clickable" title="Mi Cuenta">account_circle </span><span class="b-text">Mi Cuenta</span></a>
                 <a href="#" class="a-button"><span class="material-icons clickable" title="Mi Cuenta">monetization_on</span><span class="b-text">Fundador</span></a>
-                <a href="#" class="a-button"><span class="material-icons clickable" title="Mi Cuenta">store          </span><span class="b-text">Publicar un Porducto</span></a>
+                <a href="new-product" class="a-button"><span class="material-icons clickable" title="Mi Cuenta">store          </span><span class="b-text">Publicar un Producto</span></a>
                 <a href="#" class="a-button"><span class="material-icons clickable" title="Mi Cuenta">notifications  </span><span class="b-text">Notificaciones</span></a>
-                <a href="#" class="a-button"><span class="material-icons clickable" title="Mi Cuenta">filter         </span><span class="b-text">Categorías</span></a>
+                <a href="#" class="a-button"><span class="material-icons clickable" title="Mi Cuenta">collections    </span><span class="b-text">Categorías</span></a>
                 <a href="#" class="a-button"><span class="material-icons clickable" title="Mi Cuenta">help           </span><span class="b-text">Acerca de...</span></a>
         </div>
     </section>

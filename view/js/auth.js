@@ -12,13 +12,15 @@ function newEl(el){
 var registrar = el('signup-button');
 
 if(registrar !== null)
-registrar.addEventListener('click', () => {
+registrar.addEventListener('click', (event) => {
 
     var username = el('username-register').value;
     var email = el('email-register').value;
     var password = el('password-register').value;
 
     auth( '/mobileRegister' , email, password, username);
+
+    event.preventDefault();
 
 })
 
@@ -31,12 +33,15 @@ registrar.addEventListener('click', () => {
 var ingresar = el('login-button');
 
 if(ingresar !== null)
-ingresar.addEventListener('click', () => {
+ingresar.addEventListener('click', (event) => {
 
     var email = el('email-login').value;
     var password = el('password-login').value;
 
     auth( '/mobileLogin', email, password );
+
+    event.preventDefault();
+    
 })
 
 

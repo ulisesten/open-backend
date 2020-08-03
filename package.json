@@ -6,7 +6,7 @@
   "gypfile": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "IP=0.0.0.0 PORT=8080 mocha --timeout 5000 tests/*_test.js",
+    "test": "IP=0.0.0.0 PORT=8080 mocha --timeout 10000 test/*_test.js --exit",
     "build": "node-gyp rebuild",
     "clean": "node-gyp clean"
   },
@@ -16,12 +16,15 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "cookie": "^0.3.1",
     "csrf-token": "^1.1.0",
     "firebase-admin": "^8.10.0",
     "http-errors": "^1.7.1",
     "jsonwebtoken": "^8.5.1",
     "jwt-simple": "^0.5.6",
+    "mocha": "^8.1.0",
     "mongodb": "^3.5.5",
     "mongoose": "^5.7.5",
     "morgan": "^1.7.0",

@@ -21,6 +21,11 @@ function jsonBadResponse(res, status){
     res.end();
 }
 
+function redirect( res, status, newUrl ){
+    res.writeHead(status, {'Location': newUrl});
+    res.end();
+}
+
 
 
 function createDatabaseUserInfoObject(req, body, hash){
@@ -70,6 +75,7 @@ function clearCookie(){
 module.exports = {
     jsonResponse,
     jsonBadResponse,
+    redirect,
     handleCredentials,
     createDatabaseUserInfoObject
 }

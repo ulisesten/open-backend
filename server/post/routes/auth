@@ -12,15 +12,12 @@ var usersCollection = db.collection('usuarios');
 function onLogin(res, err, auth, data){
     if(auth === true) {
 
-        /** AUTHORIZED */
         console.log('Login usuario AUTHORIZED')
-
         var token = jwt.createJsonWebToken(data);
         util.jsonResponse(res, 200, { id: data.id, device_id: data.device_id, username: data.username, founder: data.founder, credentials: token});
 
     } else {
 
-        /** NOT AUTHORIZED! */
         console.log('[BAD!]Login usuario NOT authorized!',err)
         util.jsonBadResponse(res, 403);
 
@@ -46,104 +43,85 @@ function onRegister(res, err, data){
 
 }
 
-function mobileLogin(req, res, ops){
-    var body = '';
+function queryingDB(res, body){
 
-    /** handle body */
-    req.on('data', data => {    body += data;    });
+    usersCollection.findOne({ 'email': body.email},'-image -role -user_ip -timestamp', function(err, doc){
 
+        if(!doc){
+            console.log('[BAD!]Login usuario NO existe',err)
+            util.jsonBadResponse(res, 401);
+                
+        } else {
+            enc.loginDecryption(body.password, doc.password, (err, auth) => {
+                onLogin(res, err, auth, doc);
+            });
+        }
 
-        /** Function target */
-        req.on('end', () => {
-            
-            body = parser.parseJson(body);
-
-            //console.log('mobileLogin',body);
-
-            if(body !== null){
-                /** Search for user */
-                usersCollection.findOne({ 'email': body.email},'-image -role -user_ip -timestamp', function(err, doc){
-
-                    if(!doc){
-
-                        /** Usuario NO existe */
-                        console.log('[BAD!]Login usuario NO existe',err)
-                        util.jsonBadResponse(res, 401);
-                            
-                    } else {
-
-                        /** Usuario existe */
-                        enc.loginDecryption(body.password, doc.password, (err, auth) => {
-
-                            onLogin(res, err, auth, doc)                            
-
-                        })
-                    }
-
-                })
-            } else {
-
-                /** Bad request */
-                util.jsonBadResponse(res, 400);
-
-            }
-
-        });
+    });
 
 }
 
-function mobileRegister(req, res, ops){
-    console.log('Post: Register');
+function mobileLogin(req, res, ops){
     var body = '';
 
-    /** handle body */
     req.on('data', data => {    body += data;    });
 
-    /** Function target */
     req.on('end', () => {
-        
         
         body = parser.parseJson(body);
 
-        /** Validating body */
-        if( body !== null ){
+        if(body !== null){
+            queryingDB(res, body);
+        } else {
+            util.jsonBadResponse(res, 400);
+        }
 
-            /** Checking availabilty of the info */
-            usersCollection.findOne({ 'email': body.email},'-imagen -role -ip -contrib -tiempo', function(err, doc){
+    });
 
-                if(!doc){
+}
 
-                    /** The info is available to storage */
-                    enc.registerEncryption( body.password , (err, hash) => {
 
-                        console.log('Register:', 'info is available');
-                        var userInfo = util.createDatabaseUserInfoObject(req, body, hash);
-                        
-                        var userModel = new model.User(userInfo);
-                        
-                        userModel.save((err, data) => {
-                            
-                            /** Handle rest of the response */
-                            onRegister(res, err, userInfo);
-                            
-                        });
 
-                    });
+function attempToRegister(res, body){
+    
+    usersCollection.findOne({ 'email': body.email},'-imagen -role -ip -contrib -tiempo', function(err, doc){
 
-                } else {
+        if(!doc){
+            enc.registerEncryption( body.password , (err, hash) => {
 
-                    /**The info is not available */
-                    console.log('[BAD!]Register:','Info not available. El usuario ya existe');
-                    util.jsonBadResponse(res, 401);
-
-                }
-
-            })
-
+                var userInfo = util.createDatabaseUserInfoObject(req, body, hash);
+                var userModel = new model.User(userInfo);
+                
+                userModel.save((err, data) => {
+                    onRegister(res, err, userInfo);
+                });
+            });
 
         } else {
 
-            /**Bad request */
+            console.log('[BAD!]Register:','Info not available. El usuario ya existe');
+            util.jsonBadResponse(res, 401);
+
+        }
+
+    })
+}
+
+function mobileRegister(req, res, ops){
+    var body = '';
+
+    req.on('data', data => {    body += data;    });
+
+    req.on('end', () => {
+        
+        body = parser.parseJson(body);
+
+        if( body !== null ){
+
+            attempToRegister( res, body );
+
+        } else {
+
             util.jsonBadResponse(res, 400);
 
         }

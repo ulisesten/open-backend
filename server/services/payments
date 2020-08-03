@@ -1,0 +1,10 @@
+#! /usr/bin/env node
+
+const stripe = require('stripe')('sk_test_nq5COqLfQp10VXwvAMHVre3n');
+
+const paymentIntent = await stripe.paymentIntents.create({
+    amount: 1099,
+    currency: 'usd'
+});
+
+//this will return paymentIntent.client_secret

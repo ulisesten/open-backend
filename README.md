@@ -48,16 +48,17 @@ Nodejs backend with c/c++ addons
      url: /setProduct
 
      body: {
-            seller_id: String,
-            seller_device_id: String,
-            seller_name: String,
-            product_name: String,
-            description: String,
-            price: Number,
-            category: String,
-            count: Number,
-            image_array: Array
-        }
+                seller_id: String,
+                seller_device_id: String,
+                seller_name: String,
+                product_name: String,
+                description: String,
+                price: Number,
+                category: String,
+                shape: String,
+                count: Number,
+                image_array: Array
+            }
 
 ### Update a product
 

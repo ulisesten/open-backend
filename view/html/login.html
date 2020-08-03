@@ -9,39 +9,39 @@
 <meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css?family=Rajdhani&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet", href="css/home.css"></link>
 </head>
 <body>
     <header class="header">
         <div class="header-container logo-nav-container">
-            <h1 class="logo"> API </h1>
+            <h1>API</h1>
             <nav class="navigation">
                 <ul>
-                    <li><a href="/registro" class="clickable">Registrarme</a></li>
-                    
-                    <li><span id="salir" class="clickable">Salir</span></li>
+                    <li><a href="/registro" class="material-icons clickable" title="Registrarme">account_circle</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <main class="main-w main-p pos">
-        
-            <div>
-                    <h1 class="welcome">Bienvenido de nuevo</h1>
-                    <div class="formulary">
-                        <span>Correo Electrónico:</span>
-                        <br>
-                        <input id="email-login" class="field border" type="text"></input>
-                        <br>
-                        <span>Contraseña:</span>
-                        <br>
-                        <input id="password-login" class="field border" type="password"></input>
-                        <br>
-                        <button id="login-button" class="border field blue">Ingresar</button>
-                    </div>
-                </div>
-        
+    <div class="header-block"></div>
+
+    <main class="main">
+        <div class="form-decoration"></div>
+        <form class="form">
+            <h1 class="welcome">Bienvenido</h1>
+            <div class="field-container">
+                <span class="field">Correo Electrónico:</span>
+                <br>
+                <input id="email-login" class="field border" type="text"></input>
+                <br>
+                <span class="field">Contraseña:</span>
+                <br>
+                <input id="password-login" class="field border" type="password"></input>
+                <br>
+                <button id="login-button" class="button">Ingresar</button>
+            </div>
+        </form>
     </main>
 
     <section class="r-section r-section-p r-section-w">

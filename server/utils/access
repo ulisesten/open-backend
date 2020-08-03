@@ -1,0 +1,25 @@
+#! /usr/bin/env node
+
+var jwt = require('./jwt');
+var cookie = require('cookie');
+
+function checkForAccess(incomingCookie){
+
+    var access = null;
+
+    var parsedCookie = cookie.parse(String(incomingCookie));
+        
+    if( parsedCookie.token !== undefined){
+        var decodedToken = jwt.decodeToken(parsedCookie.token)
+
+        if( decodedToken )
+            access = 1;
+    }
+        
+    return access;
+
+}
+
+module.exports = {
+    checkForAccess
+}
