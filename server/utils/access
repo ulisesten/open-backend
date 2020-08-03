@@ -2,18 +2,28 @@
 
 var jwt = require('./jwt');
 var cookie = require('cookie');
+const { use } = require('chai');
+
+
 
 function checkForAccess(incomingCookie){
 
-    var access = null;
+    var access = false;
 
     var parsedCookie = cookie.parse(String(incomingCookie));
         
-    if( parsedCookie.token !== undefined){
+    "use strict";
+    if( parsedCookie.token || parsedCookie.token ){
+
+        console.log('parsedCookie.token', parsedCookie.token)
+
         var decodedToken = jwt.decodeToken(parsedCookie.token)
 
-        if( decodedToken )
-            access = 1;
+        console.log('token',decodedToken);
+
+        if( decodedToken ){
+            access = true;
+        }
     }
         
     return access;

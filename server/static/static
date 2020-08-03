@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 var load = require('./load');
-var auth = require('../utils/access');
+var access = require('../utils/access');
 var responses = require('../utils/responses')
 
 function static( req, res ){
@@ -14,10 +14,10 @@ function static( req, res ){
 
     } else if(req.url === '/new-product'){
 
-        if( auth.checkForAccess(req.headers.cookie) ){
-            load.loadHTML( './view/html/new_product.html', req, res );
+        if( !(access.checkForAccess(req.headers.cookie)) ){
+            responses.redirect(res, 303, '/ingresar' )
         } else {
-            responses.redirect(res, 302, '/ingresar' )
+            load.loadHTML( './view/html/new_product.html', req, res );
         }
         
         use = true;

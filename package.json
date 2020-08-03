@@ -6,7 +6,7 @@
   "gypfile": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "IP=0.0.0.0 PORT=8080 mocha --timeout 10000 test/*_test.js --exit",
+    "test": "IP=0.0.0.0 PORT=8080 mocha test/*_test.js --exit",
     "build": "node-gyp rebuild",
     "clean": "node-gyp clean"
   },

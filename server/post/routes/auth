@@ -89,7 +89,7 @@ function attempToRegister(res, body){
         if(!doc){
             enc.registerEncryption( body.password , (err, hash) => {
 
-                var userInfo = util.createDatabaseUserInfoObject(req, body, hash);
+                var userInfo = util.createDatabaseUserInfoObject(res, body, hash);
                 var userModel = new model.User(userInfo);
                 
                 userModel.save((err, data) => {

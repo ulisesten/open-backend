@@ -1,9 +1,6 @@
 var chai = require('chai');
 var chaiHttp = require('chai-http');
-// Interesting part
 var app = require('../bin/app');
-//var loginUser = require('./login.js');
-//var auth = {token: ''};
 
 chai.use(chaiHttp);
 chai.should();
@@ -15,7 +12,6 @@ describe('Home Page', function() {
 
     chai.request(app)
     .get('/')
-    //.set('Authorization', auth.token)
     .end(function (err,res) {
       res.should.have.status(200);
       done();
@@ -28,16 +24,13 @@ describe('Home Page', function() {
 
 describe('Page to add a product', ()=>{
 
-  it('return status 304', (done)=>{
+  it('expect to be redirected', (done)=>{
 
     chai.request(app)
     .get('/new-product')
-    .then((res)=>{
-      res.should.have.status(200);
+    .end(( err, res )=>{
+      res.should.to.redirect;
       done();
-    })
-    .catch((err)=>{
-      return done(err);
     })
 
   })
