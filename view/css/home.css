@@ -65,14 +65,12 @@ a {
         .navigation ul li a {
             color: #fff;
             display: block;
-            padding: 8px;
+            margin: auto 10px;
             transition: all 0.2s linear;
-            border-radius: 3px;
             cursor: pointer;
         }
             .navigation ul li a:hover {
-                background-color: black;
-                color: white;
+                border-bottom: solid 1px #FFF;
             }
 
 
@@ -386,7 +384,7 @@ a {
     width:70%;
     overflow: hidden;
     margin: 10px auto;
-    border-radius: 6px;
+    border-radius: 12px;
     box-shadow: 0 4px 8px 0 #38383833;
 }
 
@@ -464,12 +462,14 @@ a {
       align-items: center;
       padding: 15px;
       height: 50px;
+      margin: 0 10px;
+      border-radius: 8px;
       color: #292828;
   }
 
   .side-bar .content .a-button:hover {
     background-color: #4285f4;
-    color: blanchedalmond;
+    color: #FFF;
     transition: linear 0.2s;
 }
 
