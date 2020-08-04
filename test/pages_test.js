@@ -24,12 +24,13 @@ describe('Home Page', function() {
 
 describe('Page to add a product', ()=>{
 
-  it('expect to be redirected', (done)=>{
+  it('expect to be redirect', (done)=>{
 
     chai.request(app)
     .get('/new-product')
     .end(( err, res )=>{
-      res.should.to.redirect;
+      res.should.to.redirect
+      //res.should.to.redirectTo('/ingresar');
       done();
     })
 

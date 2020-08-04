@@ -12,14 +12,9 @@ function checkForAccess(incomingCookie){
 
     var parsedCookie = cookie.parse(String(incomingCookie));
         
-    "use strict";
     if( parsedCookie.token || parsedCookie.token ){
 
-        console.log('parsedCookie.token', parsedCookie.token)
-
         var decodedToken = jwt.decodeToken(parsedCookie.token)
-
-        console.log('token',decodedToken);
 
         if( decodedToken ){
             access = true;
