@@ -27,7 +27,10 @@
     "morgan": "^1.7.0",
     "nanoid": "^2.0.0",
     "node-addon-api": "^1.7.2",
-    "socket.io": "^2.2.0"
+    "socket.io": "^2.2.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "mocha": "^8.1.0"
   },
   "repository": {
     "type": "git",
@@ -40,9 +43,6 @@
   },
   "homepage": "http://github.com/ulisesten",
   "devDependencies": {
-    "node-gyp": "^5.1.0",
-    "chai": "^4.2.0",
-    "chai-http": "^4.3.0",
-    "mocha": "^8.1.0"
+    "node-gyp": "^5.1.0"
   }
 }
