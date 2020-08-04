@@ -19,7 +19,7 @@ function getData(url, callback){
         credentials: 'include',
         headers: queryHeaders,
         method: 'GET'
-    }).then( res=> {
+    }).then( res => {
         if( !res.ok ){
             console.log('getProduct: Error');
             return;

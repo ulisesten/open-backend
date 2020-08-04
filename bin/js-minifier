@@ -1,0 +1,18 @@
+#! /usr/bin/env node
+
+var compressor = require('node-minify');
+ 
+// Using Google Closure Compiler
+compressor.minify({
+  compressor: 'gcc',
+  input: './view/js/home.js',
+  output: './view/js/home.min.js',
+  callback: function(err, min) {}
+});
+
+compressor.minify({
+    compressor: 'gcc',
+    input: './view/js/auth.js',
+    output: './view/js/auth.min.js',
+    callback: function(err, min) {}
+  });
