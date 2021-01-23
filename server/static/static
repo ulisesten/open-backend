@@ -41,7 +41,7 @@ function static( req, res ){
     /**@Scripts */
     else if( req.url === '/js/home.js') {
 
-        load.loadJS( './view/js/home.min.js', req, res );
+        load.loadJS( './view/js/home.js', req, res );
         use = true;
 
     } else if( req.url === '/js/ws.js') {
@@ -50,7 +50,7 @@ function static( req, res ){
         use = true;
     } else if( req.url === '/js/auth.js') {
 
-        load.loadJS( './view/js/auth.min.js', req, res );
+        load.loadJS( './view/js/auth.js', req, res );
         use = true;
     }
 

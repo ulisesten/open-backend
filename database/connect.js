@@ -6,7 +6,7 @@ var mongoURL = process.env.MONGO_URL || 'mongodb://localhost:27017/nekidb';
 mongoose.Promise = global.Promise;
 mongoose.connect(mongoURL,{ useNewUrlParser: true, useUnifiedTopology: true }, function (err) {
     if (err) {
-      console.log('mongoose.connect err:', err)
+        console.log('mongoose.connect err:', err)
     } else {
         console.log('mongodb connection success')
     }

@@ -58,14 +58,14 @@ function genCookie(toCookie){
     return cookie.serialize('token', String(toCookie), {
         httpOnly: true,
         maxAge: 60 * 60 * 24 * 7, // 1 week
-        path: '/'
+        path: '/',
     })
 }
 
 function clearCookie(){
     return cookie.serialize('token', String(''), {
         httpOnly: true,
-        expires: new Date(1), // 1 week
+        expires: new Date(1),
         path: '/'
     })
 }
