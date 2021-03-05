@@ -2,6 +2,13 @@
 Nodejs backend with c/c++ addons
 
 
+* [Configuration](##Configuration)
+* [Running](##Running)
+* [Project structure](##Structure)
+* [Usage](##Usage)
+* [Developers](##Developers)
+
+
 ## Configuration
 
 set the env variables when running iaas or paas or if needed(not needed locally)
@@ -26,7 +33,7 @@ stop with
     npm start
 
 
-## Project structure(need to be updated)
+## Structure
 
     open-backend
         +-- bin/
