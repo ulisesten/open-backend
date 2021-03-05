@@ -1,7 +1,7 @@
 # Open-backend
 Nodejs backend with c/c++ addons
 
-## Project structure
+## Project structure(need to be updated)
 
     open-backend
         +-- bin/
