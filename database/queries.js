@@ -7,7 +7,7 @@ var db = require('./connect'),
 var user = db.collection('usuarios');
 var pub = db.collection('publicaciones')
 
-function setCount(ip, date){
+/*function setCount(ip, date){
     var count = new model.Count({
         ip: ip,
         date: date
@@ -25,7 +25,7 @@ function getCount(cb){
         if (err) console.error('getCount: ', err)
         cb(res)
     });
-}
+}*/
 
 
 function checkUser(correo, callback){
@@ -220,8 +220,8 @@ function getFriends(userid, callback){
 }*/
 
 module.exports = {
-    setCount,
-    getCount,
+    /*setCount,
+    getCount,*/
     checkUser,
     saveUser,
     matchingUsers,
