@@ -2,14 +2,14 @@
 Nodejs backend with c/c++ addons
 
 
-* [Configuration](##Configuration)
-* [Running](##Running)
-* [Project structure](##Structure)
-* [Usage](##Usage)
-* [Developers](##Developers)
+* [Configuration](#Configuration)
+* [Running](#Running)
+* [Project structure](#Structure)
+* [Usage](#Usage)
+* [Developers](#Developers)
 
 
-## Configuration
+# Configuration
 
 set the env variables when running iaas or paas or if needed(not needed locally)
 
@@ -27,13 +27,13 @@ stop with
     sudo service mongod stop
 
 
-## Running
+# Running
 
     npm install
     npm start
 
 
-## Structure
+# Structure
 
     open-backend
         +-- bin/
@@ -71,9 +71,9 @@ stop with
 
 
 
- ## Usage
+ # Usage
 
- ### Set a product
+ ## Set a product
 
      POST
 
@@ -92,7 +92,7 @@ stop with
                 image_array: Array
             }
 
-### Update a product
+## Update a product
 
     POST
 
@@ -101,6 +101,6 @@ stop with
     body: //same as setProduct
         
 
- ## Developers
+ # Developers
     Ulisesten
 
