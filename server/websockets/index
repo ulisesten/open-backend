@@ -32,22 +32,31 @@ function websockets(io){
             
             
             data.timestamp = new Date();
-            if( data.from_device_id === undefined) data.from_device_id = ""
+            if( data.from_device_id === undefined) {
+                /**We don't want undefined value 'cause
+                 * this can produce errors on android clients
+                  */
+                data.from_device_id = "";
+            }
 
-            var message = new model.Message(data);
-            setMessage(socket, message);
 
+            saveMessage(socket, data);
+
+            /**Setting sender and receiver socket */
             var senderClient = io.sockets.adapter.rooms[id];
             var receiverClient = io.sockets.adapter.rooms[data.to_id];
 
-            console.log('Sender client:', senderClient);
-            console.log('Receiver client:', receiverClient);//Querying clients in a given room
+            /**Uncomment this to test sockets */
+            //console.log('Sender client:', senderClient);
+            //console.log('Receiver client:', receiverClient);
 
             /** if the client is not connected */
             if( receiverClient === undefined ){
                 console.log('Websockets:', 'Receiver not connected');
                 
-                /** Send a message to the sender notifying that receiver is not connected */
+                /** If receiver is not connected socketio cannot send the message
+                 *  so we make it through FCM
+                 */
 
                 if( data.to_device_id !== undefined && data.to_device_id !== "" && private_key !== null)
                     sendFCMMessage(data.to_device_id, data.sender_name);
@@ -59,7 +68,7 @@ function websockets(io){
 
             }
 
-            //sending to sender
+            /**This notify to sender that the message has been sent */
             data.sent = true
             socket.emit('message', data);
 
@@ -69,10 +78,12 @@ function websockets(io){
 
 }
 
-function setMessage(socket, message){
+function saveMessage(socket, data){
+    var message = new model.Message(data);
     message.save((err, doc) => {
         if (err) {
             socket.emit('error','mensaje no guardado');
+            console.log('[ERROR]Websockets/index: El mensaje no se guardo_');
         } else {
             console.log('Websockets/index: El mensaje se guardO correctamente', doc);
         }
@@ -84,7 +95,7 @@ function sendFCMMessage(registrationToken, sender){
     var message = {
         data: {
           name: sender,
-          message: 'test message body'
+          message: 'You have a new message'
         },
         token: registrationToken
       };
