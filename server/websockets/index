@@ -22,6 +22,7 @@ admin.initializeApp({
 function websockets(io){
 
     io.on('connection', socket => {
+        console.log("attempt to connect");
 
         var id = socket.handshake.query['id'];
         //console.log('user_id', id)
@@ -53,7 +54,6 @@ function websockets(io){
                 /** Send a message to the sender notifying that receiver is not connected */
                 //socket.emit('receiverNotConnected', {'to_id': data.to_id, 'sender_name': data.sender_name, 'product_id': data.product_id })
 
-                //var registrationToken = 'craSzMH-4Ew:APA91bFBunT61dykQ4RnsTDy-kSvspdSl1PpJFWogslmj4R9wVDfG9QLdFdTZmNf_VTELatUUmCEv92p2nATpUPqH9JCxa9qxr5CjUNy7V6w1ZNNcBWR3ddvkAjv-x-m4MqioZXvyYAT';
                 if( data.to_device_id !== undefined && data.to_device_id !== "" && private_key !== null)
                     sendFCMMessage(data.to_device_id, data.sender_name);
 
