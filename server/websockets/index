@@ -3,9 +3,7 @@
 var model = require('../../database/models');
 var admin = require("firebase-admin");
 
-//var serviceAccount = process.env.GOOGLE_APPLICATION_CREDENTIALS || require("../keys/mlvalles-key.json");
 
-//console.log('key', serviceAccount);
 var private_key = process.env.FIREBASE_PRIVATE_KEY || null
 
 if(private_key !== null)
@@ -18,6 +16,7 @@ admin.initializeApp({
     databaseURL: "https://mlvalles-741ec.firebaseio.com"
   });
 
+
 /** Websockets */
 function websockets(io){
 
@@ -25,34 +24,40 @@ function websockets(io){
         console.log("attempt to connect");
 
         var id = socket.handshake.query['id'];
-        //console.log('user_id', id)
         
         socket.leave(socket.id);//leaving default room
         socket.join(id);//joining to custom room
-        
-        //console.log('Websockets:', 'connected');
+
 
         socket.on('message', function(data) {
             
-            //console.log('websockets', data);
+            
             data.timestamp = new Date();
-            if( data.from_device_id === undefined) data.from_device_id = ""
+            if( data.from_device_id === undefined) {
+                /**We don't want undefined value 'cause
+                 * this can produce errors on android clients
+                  */
+                data.from_device_id = "";
+            }
 
-            var message = new model.Message(data);
-            setMessage(socket, message);
 
+            saveMessage(socket, data);
+
+            /**Setting sender and receiver socket */
             var senderClient = io.sockets.adapter.rooms[id];
             var receiverClient = io.sockets.adapter.rooms[data.to_id];
 
-            console.log('Sender client:', senderClient);
-            console.log('Receiver client:', receiverClient);//Querying clients in a given room
+            /**Uncomment this to test sockets */
+            //console.log('Sender client:', senderClient);
+            //console.log('Receiver client:', receiverClient);
 
             /** if the client is not connected */
             if( receiverClient === undefined ){
                 console.log('Websockets:', 'Receiver not connected');
                 
-                /** Send a message to the sender notifying that receiver is not connected */
-                //socket.emit('receiverNotConnected', {'to_id': data.to_id, 'sender_name': data.sender_name, 'product_id': data.product_id })
+                /** If receiver is not connected socketio cannot send the message
+                 *  so we make it through FCM
+                 */
 
                 if( data.to_device_id !== undefined && data.to_device_id !== "" && private_key !== null)
                     sendFCMMessage(data.to_device_id, data.sender_name);
@@ -64,7 +69,7 @@ function websockets(io){
 
             }
 
-            //sending to sender
+            /**This notify to sender that the message has been sent */
             data.sent = true
             socket.emit('message', data);
 
@@ -74,10 +79,12 @@ function websockets(io){
 
 }
 
-function setMessage(socket, message){
+function saveMessage(socket, data){
+    var message = new model.Message(data);
     message.save((err, doc) => {
         if (err) {
             socket.emit('error','mensaje no guardado');
+            console.log('[ERROR]Websockets/index: El mensaje no se guardo_');
         } else {
             console.log('Websockets/index: El mensaje se guardO correctamente', doc);
         }
@@ -89,7 +96,7 @@ function sendFCMMessage(registrationToken, sender){
     var message = {
         data: {
           name: sender,
-          message: 'test message body'
+          message: 'You have a new message'
         },
         token: registrationToken
       };

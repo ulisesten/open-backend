@@ -18,8 +18,3 @@ server.listen(port, ip, function () {
     console.log( "Listening on " + ip + ", port " + port )
 
 });
-
-//const WebSocket = require('ws');
-
-//var ws = new WebSocket.Server({server, path: '/'})
-//console.log('creating ws',ws)
