@@ -28,7 +28,7 @@
     "mongodb": "^3.5.5",
     "mongoose": "^5.11.19",
     "morgan": "^1.7.0",
-    "nanoid": "^2.0.0",
+    "nanoid": "^3.1.31",
     "node-addon-api": "^1.7.2",
     "socket.io": "^2.4.0"
   },
