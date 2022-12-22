@@ -22,7 +22,7 @@
     "csrf-token": "^1.1.0",
     "firebase-admin": "^9.4.2",
     "http-errors": "^1.7.1",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "jwt-simple": "^0.5.6",
     "mocha": "^8.1.0",
     "mongodb": "^3.5.5",
